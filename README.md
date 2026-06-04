@@ -1,5 +1,8 @@
 # Anti-VEGF Intolerance Prediction in Diabetic Retinopathy from Color Fundus Photographs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20537895.svg)](https://doi.org/10.5281/zenodo.20537895)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 Code and reproducibility resources for the paper:
 
 > **Linking Retinal Imaging, Traditional Chinese Medicine Syndromes, and Anti-VEGF Treatment Outcome in Diabetic Retinopathy: An Interpretable AI Framework for Objective Syndrome Characterization and Intolerance Prediction**
@@ -126,6 +129,19 @@ A data manifest CSV (columns: `image_path,label[,patient_id]`) is expected for t
   journal = {Engineering},
   year    = {TBD},
   doi     = {TBD}
+}
+```
+
+This repository is archived on Zenodo (cite the code/data archive separately):
+
+```bibtex
+@software{CM_Oculomics_zenodo,
+  title     = {CM-Oculomics: reproducibility code for anti-VEGF intolerance prediction from color fundus photographs},
+  author    = {TBD},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20537895},
+  url       = {https://doi.org/10.5281/zenodo.20537895}
 }
 ```
 
