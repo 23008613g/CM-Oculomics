@@ -70,7 +70,7 @@ Python ≥ 3.10 and PyTorch ≥ 2.1 (CUDA build recommended). A single 24 GB GPU
 This work **fine-tunes RETFound**. Two steps:
 
 1. **Obtain RETFound pretrained weights** from the official source (Hugging Face / the RETFound repository). RETFound weights are released under **CC BY-NC 4.0** — see §6.
-2. **Our fine-tuned weights** (anti-VEGF intolerance head): [download link — TBD, e.g. a Hugging Face model card or Zenodo DOI]. Released under **CC BY-NC 4.0** in compliance with the RETFound license (§6). Place the checkpoint at `weights/best.pth` (path configurable in `configs/default.yaml`).
+2. **Our fine-tuned weights** (anti-VEGF intolerance head) are archived as an attachment on the Zenodo record for this repository: **https://doi.org/10.5281/zenodo.20537895** (download `best.pth` from the *Files* section). Released under **CC BY-NC 4.0** in compliance with the RETFound license (§6). Place the checkpoint at `weights/best.pth` (path configurable in `configs/default.yaml`).
 
 > If fine-tuned weights are not yet released, `src/train.py` reproduces them from RETFound + your own ethically-approved data.
 
