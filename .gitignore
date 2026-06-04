@@ -1,0 +1,48 @@
+# ============================================================
+# PRIVACY: never commit any patient data or identity mapping
+# ============================================================
+# data directories (any form)
+data/
+data_anon/
+**/images/
+**/PRIVATE/
+**/id_map*.csv
+**/*identity*
+**/*patient*.csv
+**/*patient*.xls*
+# raw clinical tables
+*.xls
+*.xlsx
+# any de-identified manifests that still reference real data
+manifest*.csv
+splits*.csv
+oof_predictions*.csv
+
+# ============================================================
+# model weights / large files
+# ============================================================
+weights/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+
+# ============================================================
+# python / env
+# ============================================================
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+
+# ============================================================
+# outputs
+# ============================================================
+outputs/
+results/
+*.log
+
+# allow a NON-patient example image for the demo (explicit opt-in)
+!assets/example_fundus.jpg
