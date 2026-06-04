@@ -1,6 +1,6 @@
 # Anti-VEGF Intolerance Prediction in Diabetic Retinopathy from Color Fundus Photographs
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20537895.svg)](https://doi.org/10.5281/zenodo.20537895)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20537894.svg)](https://doi.org/10.5281/zenodo.20537894)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 Code and reproducibility resources for the paper:
@@ -70,7 +70,7 @@ Python ≥ 3.10 and PyTorch ≥ 2.1 (CUDA build recommended). A single 24 GB GPU
 This work **fine-tunes RETFound**. Two steps:
 
 1. **Obtain RETFound pretrained weights** from the official source (Hugging Face / the RETFound repository). RETFound weights are released under **CC BY-NC 4.0** — see §6.
-2. **Our fine-tuned weights** (anti-VEGF intolerance head) are archived as an attachment on the Zenodo record for this repository: **https://doi.org/10.5281/zenodo.20537895** (download `best.pth` from the *Files* section). Released under **CC BY-NC 4.0** in compliance with the RETFound license (§6). Place the checkpoint at `weights/best.pth` (path configurable in `configs/default.yaml`).
+2. **Our fine-tuned weights** (anti-VEGF intolerance head) are archived as an attachment on the Zenodo record for this repository: **https://doi.org/10.5281/zenodo.20537894** (download `best.pth` from the *Files* section). Released under **CC BY-NC 4.0** in compliance with the RETFound license (§6). Place the checkpoint at `weights/best.pth` (path configurable in `configs/default.yaml`).
 
 > If fine-tuned weights are not yet released, `src/train.py` reproduces them from RETFound + your own ethically-approved data.
 
@@ -140,8 +140,8 @@ This repository is archived on Zenodo (cite the code/data archive separately):
   author    = {TBD},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.20537895},
-  url       = {https://doi.org/10.5281/zenodo.20537895}
+  doi       = {10.5281/zenodo.20537894},
+  url       = {https://doi.org/10.5281/zenodo.20537894}
 }
 ```
 
