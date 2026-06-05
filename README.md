@@ -97,6 +97,14 @@ python app.py     # opens a Gradio UI
 
 A data manifest CSV (columns: `image_path,label[,patient_id]`) is expected for training; a template is documented in `src/dataset.py`. **You must supply your own ethically-approved data — none is distributed here.**
 
+### Interactive demo (`app.py`)
+
+`app.py` is a [Gradio](https://gradio.app) app that takes one color fundus photograph and returns (1) an **anti-VEGF intolerance risk score**, (2) a **Grad-CAM** heatmap, and (3) three **vascular biomarkers** (density, skeleton length, fractal dimension). It runs locally with `python app.py` and is ready to deploy as a **Hugging Face Space** (CPU is sufficient).
+
+- The app resolves fine-tuned weights automatically: `WEIGHTS_PATH` (local) → `weights/best.pth` → auto-download from `WEIGHTS_URL` (defaults to the Zenodo record) → placeholder head (clearly labeled) if none are found.
+- To deploy on Hugging Face: see `README_HFSpace.md` (it contains the required HF YAML header and step-by-step instructions; rename it to `README.md` inside the Space).
+- **Research prototype — not a medical device. Not for clinical use.** No patient data are bundled.
+
 ---
 
 ## 6. License and compliance (please read)
