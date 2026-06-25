@@ -377,6 +377,9 @@ CSS = """
   background:linear-gradient(135deg,var(--teal),var(--cyan)) !important;
   color:#fff !important; border:none !important; font-weight:800 !important;
   box-shadow:0 4px 16px rgba(16,179,196,.32) !important;}
+/* hide Gradio's auto-localized footer (Use via API / Settings / Built with Gradio)
+   so the page stays consistently English regardless of the viewer's browser locale */
+footer {display:none !important;}
 """
 
 THEME = gr.themes.Soft(
@@ -480,4 +483,5 @@ with gr.Blocks(theme=THEME, css=CSS, title="CM-Oculomics — Anti-VEGF Intoleran
 
 if __name__ == "__main__":
     demo.launch(server_name=os.environ.get("GRADIO_SERVER_NAME", "0.0.0.0"),
-                server_port=int(os.environ.get("GRADIO_SERVER_PORT", "7860")))
+                server_port=int(os.environ.get("GRADIO_SERVER_PORT", "7860")),
+                show_api=False)

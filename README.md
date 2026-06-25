@@ -2,6 +2,9 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20537894.svg)](https://doi.org/10.5281/zenodo.20537894)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Live Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Demo-CM--Oculomics-yellow)](https://huggingface.co/spaces/fc28/CM-Oculomics)
+
+**🔗 Interactive demo (no install): https://huggingface.co/spaces/fc28/CM-Oculomics**
 
 Code, an interactive demo, and reproducibility resources for the paper:
 
@@ -106,7 +109,7 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ### Interactive demo (`app.py`)
 
-`app.py` is a [Gradio](https://gradio.app) app that takes one color fundus photograph and returns (1) an **anti-VEGF intolerance risk score**, (2) a **Grad-CAM** heatmap, and (3) three **vascular biomarkers**. It runs locally with `python app.py` and is ready to deploy as a **Hugging Face Space** (CPU is sufficient; see `README_HFSpace.md`).
+`app.py` is a [Gradio](https://gradio.app) app that takes one color fundus photograph and returns (1) an **anti-VEGF intolerance risk score**, (2) a **Grad-CAM** heatmap, and (3) three **vascular biomarkers**. A live public instance is hosted on Hugging Face Spaces — **https://huggingface.co/spaces/fc28/CM-Oculomics** — and it also runs locally with `python app.py` (CPU is sufficient; to self-host see `README_HFSpace.md`).
 
 **Research prototype — not a medical device. Not for clinical use.** No patient data are bundled.
 
