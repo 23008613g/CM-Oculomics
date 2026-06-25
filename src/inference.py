@@ -3,13 +3,13 @@
 import argparse
 import torch
 from PIL import Image
-from .model import load_finetuned
+from .model import load_dinov2
 from .dataset import build_transforms
 
 
 def predict(image_path: str, weights: str, device: str = None, threshold: float = 0.5):
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-    model = load_finetuned(weights, device)
+    model = load_dinov2(weights, device)   # primary backbone: DINOv2 (ViT-L/14)
     tf = build_transforms(224, train=False)
     x = tf(Image.open(image_path).convert("RGB")).unsqueeze(0).to(device)
     with torch.no_grad():

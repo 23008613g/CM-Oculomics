@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Grad-CAM explanation for the ViT-based RETFound classifier.
+"""Grad-CAM explanation for the DINOv2 (ViT-L/14) intolerance classifier.
 
-ViT tokens are reshaped to a 14x14 grid (224/16) for spatial attribution.
+ViT tokens are reshaped to a 16x16 grid (224/14) for spatial attribution.
 """
 import argparse
 import numpy as np
@@ -10,21 +10,19 @@ from PIL import Image
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
-from .model import load_finetuned
+from .model import load_dinov2, dinov2_gradcam_target, dinov2_reshape
 from .dataset import build_transforms
 
 
-def reshape_transform(tensor, height=14, width=14):
-    # tensor: [B, 1+N, C] -> drop cls -> [B,H,W,C] -> [B,C,H,W]
-    result = tensor[:, 1:, :].reshape(tensor.size(0), height, width, tensor.size(2))
-    return result.permute(0, 3, 1, 2)
+def reshape_transform(tensor, grid=16):
+    return dinov2_reshape(tensor, grid)
 
 
 def gradcam(image_path: str, weights: str, out_path: str = "cam.png",
             device: str = None, target_class: int = 1):
     device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-    model = load_finetuned(weights, device)
-    target_layers = [model.backbone.blocks[-1].norm1]
+    model = load_dinov2(weights, device)
+    target_layers = dinov2_gradcam_target(model)
     cam = GradCAM(model=model, target_layers=target_layers,
                   reshape_transform=reshape_transform)
 
