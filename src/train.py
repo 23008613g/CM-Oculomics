@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Fine-tune RETFound for anti-VEGF intolerance (5-fold, patient-level CV).
+Fine-tune a vision foundation model for anti-VEGF intolerance (5-fold, patient-level CV).
 
-Class-weighted cross-entropy handles the ~9:1 imbalance; AMP + cosine schedule;
-early stopping on validation balanced accuracy. Supply your own de-identified
-manifest (see src/dataset.py). NO patient data is included in this repository.
+Primary backbone: DINOv2 (ViT-L/14, Apache-2.0); set `backbone: retfound` in the config
+to fine-tune the RETFound comparator instead. Class-weighted cross-entropy handles the
+~9:1 imbalance; AMP + cosine schedule; early stopping on validation balanced accuracy.
+Supply your own de-identified manifest (see src/dataset.py). NO patient data is included.
 """
 import argparse, yaml
 import numpy as np
@@ -14,7 +15,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold
 from sklearn.metrics import roc_auc_score, balanced_accuracy_score
-from .model import FundusClassifier
+from .model import FundusClassifier, build_dinov2
 from .dataset import FundusDataset, build_transforms
 from PIL import Image
 
@@ -38,7 +39,10 @@ def train_one_fold(tr, va, cfg, device):
     tr_ds, va_ds = _DS(tr, True), _DS(va, False)
     tr_ld = DataLoader(tr_ds, cfg["batch_size"], shuffle=True, num_workers=4, drop_last=True)
     va_ld = DataLoader(va_ds, cfg["batch_size"], shuffle=False, num_workers=4)
-    model = FundusClassifier(2, cfg.get("retfound_weights")).to(device)
+    if cfg.get("backbone", "dinov2") == "retfound":
+        model = FundusClassifier(2, cfg.get("retfound_weights")).to(device)
+    else:
+        model = build_dinov2(2, img_size=cfg.get("image_size", 224)).to(device)
     crit = nn.CrossEntropyLoss(weight=class_weights(tr["label"].values, device))
     opt = torch.optim.AdamW(model.parameters(), lr=cfg["lr"], weight_decay=cfg["weight_decay"])
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=cfg["epochs"])

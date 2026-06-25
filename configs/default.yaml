@@ -1,12 +1,13 @@
 # Training / inference configuration
 manifest: data/manifest.csv     # columns: image_path,label[,patient_id] -- YOUR de-identified data
-retfound_weights: weights/RETFound_cfp.pth   # official RETFound weights (CC BY-NC 4.0)
-out_weights: weights/best.pth
+backbone: dinov2                 # "dinov2" (primary, Apache-2.0) or "retfound" (comparator, CC BY-NC)
+retfound_weights: weights/RETFound_cfp.pth   # only used when backbone: retfound
+out_weights: weights/dino_deploy.pth
 seed: 42
 folds: 5
 image_size: 224
 batch_size: 16
-lr: 0.00005
+lr: 0.00001                      # DINOv2 best LR (5e-5 for the RETFound comparator)
 weight_decay: 0.05
 epochs: 30
 patience: 10
