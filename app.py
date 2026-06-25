@@ -380,6 +380,14 @@ CSS = """
 /* hide Gradio's auto-localized footer (Use via API / Settings / Built with Gradio)
    so the page stays consistently English regardless of the viewer's browser locale */
 footer {display:none !important;}
+/* Force the upload box prompt to English (Gradio otherwise localizes the
+   "Drop Image Here / Click to Upload" text to the viewer's browser language).
+   Scoped to our image input only; no-op if Gradio's markup differs. */
+#fundus_in .wrap {font-size:0 !important;}
+#fundus_in .wrap::after {
+  content:"Drop a fundus image here — or click to upload";
+  font-size:.95rem !important; color:var(--muted); display:block; margin-top:6px;
+  font-weight:600; line-height:1.4;}
 """
 
 THEME = gr.themes.Soft(
@@ -393,7 +401,19 @@ THEME = gr.themes.Soft(
 _example_path = "assets/example_fundus.jpg"
 _has_example = os.path.exists(_example_path)
 
-with gr.Blocks(theme=THEME, css=CSS, title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as demo:
+# Force the UI to English for all visitors (Gradio auto-localizes built-in strings —
+# e.g. the image drop-zone "Drop Image Here / Click to Upload" — to the viewer's
+# browser language; we pin navigator.language to English before the frontend reads it).
+HEAD = (
+    "<script>"
+    "try{"
+    "Object.defineProperty(navigator,'language',{get:function(){return 'en-US';},configurable:true});"
+    "Object.defineProperty(navigator,'languages',{get:function(){return ['en-US','en'];},configurable:true});"
+    "}catch(e){}"
+    "</script>"
+)
+
+with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as demo:
     gr.HTML(
         "<div id='hdr'><h1>CM-Oculomics</h1>"
         "<div style='font-size:1.05rem;font-weight:500;color:rgba(255,255,255,0.58);margin:2px 0 5px'>"
@@ -427,7 +447,7 @@ with gr.Blocks(theme=THEME, css=CSS, title="CM-Oculomics — Anti-VEGF Intoleran
             with gr.Group():
                 gr.HTML("<div class='section-title'>Input</div>")
                 inp = gr.Image(type="pil", label="Color fundus photograph",
-                               height=340)
+                               height=340, elem_id="fundus_in")
                 with gr.Row():
                     btn = gr.Button("Analyze", variant="primary", scale=3)
                     clr = gr.ClearButton(value="Reset", scale=1)
@@ -484,4 +504,4 @@ with gr.Blocks(theme=THEME, css=CSS, title="CM-Oculomics — Anti-VEGF Intoleran
 if __name__ == "__main__":
     demo.launch(server_name=os.environ.get("GRADIO_SERVER_NAME", "0.0.0.0"),
                 server_port=int(os.environ.get("GRADIO_SERVER_PORT", "7860")),
-                show_api=False)
+                theme=THEME, css=CSS, head=HEAD)
