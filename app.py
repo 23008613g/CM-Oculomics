@@ -20,6 +20,7 @@ Weights resolution order:
      meaningless) and the UI clearly says so.
 """
 import os
+import shutil
 import tempfile
 import urllib.request
 
@@ -48,14 +49,51 @@ _CMAP = getattr(cv2, "COLORMAP_TURBO", cv2.COLORMAP_JET)
 
 
 def _resolve_weights() -> str | None:
-    """Return a local path to the weights, downloading from Zenodo if needed."""
+    """Return a local path to the fine-tuned weights.
+
+    Resolution order — hardened against the free-Space cold-start "stuck on
+    Starting" symptom:
+      (1) a local WEIGHTS_PATH if it already exists;
+      (2) a cached, resumable ``hf_hub_download`` from a HF model repo
+          (preferred: a re-boot re-uses the cache instead of re-fetching
+          1.2 GB, and a stalled connection can never hang forever);
+      (3) a direct WEIGHTS_URL download with a hard socket timeout as fallback.
+    Set ``WEIGHTS_REPO`` (e.g. ``fc28/CM-Oculomics-weights``) to force path (2);
+    otherwise it is derived automatically from a huggingface.co WEIGHTS_URL.
+    """
     if os.path.exists(WEIGHTS_PATH):
         return WEIGHTS_PATH
+
+    # (2) preferred: cached + resumable download from a HF model repo
+    repo = os.environ.get("WEIGHTS_REPO", "")
+    fname = os.environ.get("WEIGHTS_FILE", "dino_deploy.pth")
+    if not repo and "huggingface.co/" in WEIGHTS_URL and "/resolve/" in WEIGHTS_URL:
+        try:  # derive "<repo>" and "<file>" from .../<repo>/resolve/<rev>/<file>
+            after = WEIGHTS_URL.split("huggingface.co/", 1)[1]
+            repo = after.split("/resolve/", 1)[0]
+            fname = after.split("/resolve/", 1)[1].split("/", 1)[1]
+        except Exception:  # noqa: BLE001 - malformed URL: skip to (3)
+            repo = ""
+    if repo:
+        try:
+            from huggingface_hub import hf_hub_download
+            print(f"[weights] hf_hub_download {repo}/{fname} ...")
+            p = hf_hub_download(repo_id=repo, filename=fname,
+                                token=os.environ.get("HF_TOKEN") or None)
+            if os.path.getsize(p) > 1_000_000:
+                print("[weights] hf_hub_download OK")
+                return p
+        except Exception as e:  # noqa: BLE001 - fall through to URL / placeholder
+            print(f"[weights] hf_hub_download failed: {e}")
+
+    # (3) fallback: direct URL, but with a hard timeout so startup can never hang
     if WEIGHTS_URL:
         try:
             os.makedirs(os.path.dirname(WEIGHTS_PATH) or ".", exist_ok=True)
-            print(f"[weights] downloading from {WEIGHTS_URL} ...")
-            urllib.request.urlretrieve(WEIGHTS_URL, WEIGHTS_PATH)
+            print(f"[weights] downloading from {WEIGHTS_URL} (timeout=60s) ...")
+            with urllib.request.urlopen(WEIGHTS_URL, timeout=60) as r, \
+                    open(WEIGHTS_PATH, "wb") as f:
+                shutil.copyfileobj(r, f)
             if os.path.exists(WEIGHTS_PATH) and os.path.getsize(WEIGHTS_PATH) > 1_000_000:
                 print("[weights] download OK")
                 return WEIGHTS_PATH
