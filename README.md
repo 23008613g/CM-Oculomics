@@ -76,13 +76,13 @@ Python ≥ 3.10 and PyTorch ≥ 2.1. A GPU is recommended for training; the demo
 
 The primary model is **DINOv2 (ViT-L/14)** fine-tuned for anti-VEGF intolerance. The fine-tuned weights (`dino_deploy.pth`) are released under **Apache-2.0** and hosted on the Hugging Face Hub:
 
-- **Hugging Face model repo:** `https://huggingface.co/<your-org>/CM-Oculomics` *(set after upload)* — file `dino_deploy.pth`.
+- **Hugging Face model repo:** `https://huggingface.co/fc28/CM-Oculomics-weights` — file `dino_deploy.pth`.
 - The app resolves weights automatically: `WEIGHTS_PATH` (local) → `weights/dino_deploy.pth` → auto-download from `WEIGHTS_URL` (set to the HF resolve URL) → a clearly-labeled placeholder head if none are found.
 
 Place the checkpoint at `weights/dino_deploy.pth`, or set `WEIGHTS_URL` to the direct download link, e.g.:
 
 ```bash
-export WEIGHTS_URL="https://huggingface.co/<your-org>/CM-Oculomics/resolve/main/dino_deploy.pth"
+export WEIGHTS_URL="https://huggingface.co/fc28/CM-Oculomics-weights/resolve/main/dino_deploy.pth"
 ```
 
 DINOv2's permissive Apache-2.0 license means these weights can be shared and used (including commercially) with attribution — no NonCommercial restriction.

@@ -42,7 +42,7 @@ The fine-tuned weights (`dino_deploy.pth`, ~1.2 GB) are downloaded at startup fr
 Hugging Face model repository. Set a Space **variable**:
 
 - `WEIGHTS_URL` — direct download URL, e.g.
-  `https://huggingface.co/<your-user>/CM-Oculomics/resolve/main/dino_deploy.pth`
+  `https://huggingface.co/fc28/CM-Oculomics-weights/resolve/main/dino_deploy.pth`
 
 (or `WEIGHTS_PATH` if you upload the file directly into the Space). If no weights are
 found the demo still runs but clearly labels its output as a placeholder.
@@ -62,19 +62,19 @@ found the demo still runs but clearly labels its output as a placeholder.
 **1. Host the weights in a HF model repo** (one-time):
 
 ```bash
-huggingface-cli repo create CM-Oculomics --type model           # -> <your-user>/CM-Oculomics
-huggingface-cli upload <your-user>/CM-Oculomics \
+huggingface-cli repo create CM-Oculomics-weights --type model   # -> fc28/CM-Oculomics-weights
+huggingface-cli upload fc28/CM-Oculomics-weights \
     "path/to/dino_deploy.pth" dino_deploy.pth                    # uploads the 1.2 GB checkpoint (LFS)
 ```
 
 **2. Create the Space**: huggingface.co → **New → Space** → SDK **Gradio**,
 hardware **CPU basic** (free) is enough. This creates
-`https://huggingface.co/spaces/<your-user>/CM-Oculomics`.
+`https://huggingface.co/spaces/fc28/CM-Oculomics`.
 
 **3. Push the app to the Space**:
 
 ```bash
-git clone https://huggingface.co/spaces/<your-user>/CM-Oculomics space && cd space
+git clone https://huggingface.co/spaces/fc28/CM-Oculomics space && cd space
 cp ../app.py ../requirements.txt .
 cp -r ../src .
 cp ../README_HFSpace.md README.md          # the Space README MUST be named README.md
@@ -84,7 +84,7 @@ git add . && git commit -m "CM-Oculomics demo (DINOv2)" && git push
 
 **4. Point the Space at the weights**: Space → **Settings → Variables and secrets**
 → add variable `WEIGHTS_URL` =
-`https://huggingface.co/<your-user>/CM-Oculomics/resolve/main/dino_deploy.pth`.
+`https://huggingface.co/fc28/CM-Oculomics-weights/resolve/main/dino_deploy.pth`.
 
 The Space builds, downloads the weights on first boot (a few minutes for 1.2 GB;
 cached afterwards), and serves a public URL. On free CPU, inference is a few
