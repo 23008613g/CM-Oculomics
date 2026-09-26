@@ -8,8 +8,11 @@
 
 Code, an interactive demo, and reproducibility resources for the paper:
 
-> **CM-Oculomics: Extending the Oculomics Paradigm to Chinese Medicine for Interpretable Anti-VEGF Intolerance Prediction in Diabetic Retinopathy**
-> *(Authors, affiliations, journal/DOI — TBD)*
+> **Cohort dependence escapes unsupervised performance estimation in a fundus-based anti-VEGF risk model**
+> Cheng Zhang, Shuyan Zhang, Guoming Chen, Xiaoyu Xu, Guoyi Tang, Ruogu Xiong,
+> Yunqing Xun, Tung Leong Fong, Yue Chen, Qinguo Huang, Zhongxiu Zhang, Ning Wang,
+> Yinjian Zhang, Yibin Feng
+> *(manuscript submitted for publication; DOI to follow)*
 
 This repository provides the inference, explainability, and imaging-biomarker code, plus an interactive web demo, for the main results of the paper. **No patient data are included** (see *Data & Privacy* below).
 
@@ -135,16 +138,15 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ```bibtex
 @article{CM_Oculomics,
-  title   = {CM-Oculomics: Extending the Oculomics Paradigm to Chinese Medicine for Interpretable Anti-VEGF Intolerance Prediction in Diabetic Retinopathy},
-  author  = {TBD},
-  journal = {Engineering},
-  year    = {TBD},
-  doi     = {TBD}
+  title   = {Cohort dependence escapes unsupervised performance estimation in a fundus-based anti-VEGF risk model},
+  author  = {Zhang, Cheng and Zhang, Shuyan and Chen, Guoming and Xu, Xiaoyu and Tang, Guoyi and Xiong, Ruogu and Xun, Yunqing and Fong, Tung Leong and Chen, Yue and Huang, Qinguo and Zhang, Zhongxiu and Wang, Ning and Zhang, Yinjian and Feng, Yibin},
+  year    = {2026},
+  note    = {Manuscript submitted for publication}
 }
 
 @software{CM_Oculomics_zenodo,
   title     = {CM-Oculomics: code and demo for anti-VEGF intolerance prediction from color fundus photographs},
-  author    = {TBD},
+  author    = {Zhang, Cheng and Zhang, Shuyan and Chen, Guoming and Xu, Xiaoyu and Tang, Guoyi and Xiong, Ruogu and Xun, Yunqing and Fong, Tung Leong and Chen, Yue and Huang, Qinguo and Zhang, Zhongxiu and Wang, Ning and Zhang, Yinjian and Feng, Yibin},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.20537894},

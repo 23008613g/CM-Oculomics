@@ -448,6 +448,14 @@ HEAD = (
     "Object.defineProperty(navigator,'language',{get:function(){return 'en-US';},configurable:true});"
     "Object.defineProperty(navigator,'languages',{get:function(){return ['en-US','en'];},configurable:true});"
     "}catch(e){}"
+    # Force external links (e.g. the GitHub code link) to open in a new top-level
+    # tab. Inside HF's iframe an in-frame nav to github.com is blocked by GitHub's
+    # X-Frame-Options ("refused to connect"); window.open escapes the iframe.
+    "document.addEventListener('click',function(e){"
+    "var a=e.target&&e.target.closest?e.target.closest(\"a[href^='http']\"):null;"
+    "if(a&&!/(^https?:\\/\\/)?([^\\/]*\\.)?hf\\.space/.test(a.href)){"
+    "e.preventDefault();window.open(a.href,'_blank','noopener');}"
+    "},true);"
     "</script>"
 )
 
@@ -507,7 +515,8 @@ with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as dem
                 "<span class='v'>Grad-CAM + vascular biomarkers</span></div>"
                 "<div class='mcard-note'>Full methodology and evaluation are "
                 "reported in the accompanying paper and "
-                "<a href='https://github.com/23008613g/CM-Oculomics'>code "
+                "<a href='https://github.com/23008613g/CM-Oculomics' "
+                "target='_blank' rel='noopener noreferrer'>code "
                 "repository</a>.</div>"
                 "</div>"
             )
@@ -533,7 +542,8 @@ with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as dem
         "<div id='foot'><b>For research use only.</b><br>"
         "Model: DINOv2 ViT-L/14, fine-tuned in-house · weights under Apache-2.0. "
         "No patient data are bundled.<br>"
-        "<a href='https://github.com/23008613g/CM-Oculomics'>Code</a></div>"
+        "<a href='https://github.com/23008613g/CM-Oculomics' "
+        "target='_blank' rel='noopener noreferrer'>Code</a></div>"
     )
 
     btn.click(analyze, inputs=inp, outputs=[risk_out, cam_out, bm_out])
