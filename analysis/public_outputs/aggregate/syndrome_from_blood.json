@@ -1,0 +1,58 @@
+{
+  "blood_only": {
+    "features": [
+      "HbA1c",
+      "LDL",
+      "HDL",
+      "Triglyceride"
+    ],
+    "n": 486,
+    "classes": [
+      "气阴两虚证",
+      "痰瘀阻滞证",
+      "脾肾两虚证",
+      "阴虚夹瘀证"
+    ],
+    "macro_auc_ovr": 0.4724,
+    "balanced_acc": 0.245
+  },
+  "blood_metabolic_bmi": {
+    "features": [
+      "HbA1c",
+      "LDL",
+      "HDL",
+      "Triglyceride",
+      "BMI"
+    ],
+    "n": 486,
+    "classes": [
+      "气阴两虚证",
+      "痰瘀阻滞证",
+      "脾肾两虚证",
+      "阴虚夹瘀证"
+    ],
+    "macro_auc_ovr": 0.494,
+    "balanced_acc": 0.237
+  },
+  "blood_metabolic": {
+    "features": [
+      "HbA1c",
+      "LDL",
+      "HDL",
+      "Triglyceride",
+      "BMI",
+      "年龄",
+      "糖尿病年限（年）"
+    ],
+    "n": 486,
+    "classes": [
+      "气阴两虚证",
+      "痰瘀阻滞证",
+      "脾肾两虚证",
+      "阴虚夹瘀证"
+    ],
+    "macro_auc_ovr": 0.599,
+    "balanced_acc": 0.322
+  },
+  "note": "Re-derived because the previously quoted 0.587 could not be traced to any file under results/ or any console log. Chance level for four balanced classes is 0.5 under the one-vs-rest macro AUC."
+}

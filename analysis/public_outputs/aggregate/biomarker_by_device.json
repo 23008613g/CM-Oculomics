@@ -1,0 +1,90 @@
+{
+  "n_images": 988,
+  "n_visucam": 630,
+  "n_visucam_pdr": 84,
+  "univariate": {
+    "vessel_skeleton": {
+      "pooled_auc": 0.719,
+      "pooled_p": 2.3823671596538186e-12,
+      "visucam_auc": 0.671,
+      "visucam_p": 4.220584954444098e-07,
+      "tolerant_device_separation_auc": 1.0,
+      "tolerant_median_by_device": {
+        "Canon digital back": 0.058,
+        "Topcon + frame grabber": 0.101,
+        "VISUCAM 200": 0.392
+      }
+    },
+    "vessel_density": {
+      "pooled_auc": 0.672,
+      "pooled_p": 3.4341132297079785e-08,
+      "visucam_auc": 0.594,
+      "visucam_p": 0.005449120183885428,
+      "tolerant_device_separation_auc": 1.0,
+      "tolerant_median_by_device": {
+        "Canon digital back": 0.14,
+        "Topcon + frame grabber": 0.235,
+        "VISUCAM 200": 0.68
+      }
+    },
+    "fractal_dim": {
+      "pooled_auc": 0.653,
+      "pooled_p": 9.303627034616705e-07,
+      "visucam_auc": 0.548,
+      "visucam_p": 0.1598121731751324,
+      "tolerant_device_separation_auc": 0.992,
+      "tolerant_median_by_device": {
+        "Canon digital back": 1.441,
+        "Topcon + frame grabber": 1.644,
+        "VISUCAM 200": 1.834
+      }
+    },
+    "dark_lesion_area": {
+      "pooled_auc": 0.64,
+      "pooled_p": 7.531189820606629e-06,
+      "visucam_auc": 0.68,
+      "visucam_p": 1.0221434107655936e-07,
+      "tolerant_device_separation_auc": 0.712,
+      "tolerant_median_by_device": {
+        "Canon digital back": 0.165,
+        "Topcon + frame grabber": 0.096,
+        "VISUCAM 200": 0.029
+      }
+    }
+  },
+  "multivariable": {
+    "pooled_as_reported": {
+      "n": 805,
+      "events": 71,
+      "skeleton_OR": 74.9,
+      "skeleton_ci": [
+        12.3,
+        456.4
+      ],
+      "skeleton_p": 2.821473430292866e-06,
+      "density_OR": 0.08
+    },
+    "pooled_plus_device": {
+      "n": 805,
+      "events": 71,
+      "skeleton_OR": 735.5,
+      "skeleton_ci": [
+        71.0,
+        7621.7
+      ],
+      "skeleton_p": 3.1520869266579165e-08,
+      "density_OR": 0.01
+    },
+    "within_visucam": {
+      "n": 516,
+      "events": 66,
+      "skeleton_OR": 14.4,
+      "skeleton_ci": [
+        4.8,
+        42.9
+      ],
+      "skeleton_p": 1.6694514443841982e-06,
+      "density_OR": 0.1
+    }
+  }
+}

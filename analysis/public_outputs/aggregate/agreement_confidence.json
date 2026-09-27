@@ -1,0 +1,146 @@
+{
+  "dinov2_l": {
+    "rows": [
+      {
+        "key": "ddr",
+        "label": "DDR (China)",
+        "n": 550,
+        "external_auc": 0.9339239669421487,
+        "agreement": 0.868,
+        "confidence": 0.8993137181195258
+      },
+      {
+        "key": "jsiec",
+        "label": "JSIEC (China)",
+        "n": 78,
+        "external_auc": 0.9697567389875081,
+        "agreement": 0.8974358974358975,
+        "confidence": 0.9205004840792941
+      },
+      {
+        "key": "deepdrid",
+        "label": "DeepDRiD (China)",
+        "n": 184,
+        "external_auc": 0.8638941398865785,
+        "agreement": 0.8913043478260871,
+        "confidence": 0.908524976459154
+      },
+      {
+        "key": "aptos",
+        "label": "APTOS (India)",
+        "n": 590,
+        "external_auc": 0.6975179546107441,
+        "agreement": 0.9061016949152544,
+        "confidence": 0.9159446653766323
+      },
+      {
+        "key": "idrid",
+        "label": "IDRiD (India)",
+        "n": 128,
+        "external_auc": 0.78857421875,
+        "agreement": 0.8796875,
+        "confidence": 0.8932017469504332
+      },
+      {
+        "key": "messidor2",
+        "label": "Messidor-2 (France)",
+        "n": 70,
+        "external_auc": 0.8351020408163266,
+        "agreement": 0.9914285714285714,
+        "confidence": 0.9828852907243396
+      },
+      {
+        "key": "eyepacs",
+        "label": "EyePACS (USA)",
+        "n": 1416,
+        "external_auc": 0.8078736952982859,
+        "agreement": 0.9330508474576271,
+        "confidence": 0.9412227029558446
+      }
+    ],
+    "correlations": {
+      "agreement": {
+        "spearman_rho": -0.28571428571428575,
+        "p": 0.5345092286010406,
+        "n": 7
+      },
+      "confidence": {
+        "spearman_rho": 0.07142857142857144,
+        "p": 0.879048193148154,
+        "n": 7
+      }
+    }
+  },
+  "retfound": {
+    "rows": [
+      {
+        "key": "ddr",
+        "label": "DDR (China)",
+        "n": 550,
+        "external_auc": 0.8946512396694214,
+        "agreement": 0.7850909090909091,
+        "confidence": 0.8257059197903358
+      },
+      {
+        "key": "jsiec",
+        "label": "JSIEC (China)",
+        "n": 78,
+        "external_auc": 0.9368836291913215,
+        "agreement": 0.7846153846153847,
+        "confidence": 0.8180963705902218
+      },
+      {
+        "key": "deepdrid",
+        "label": "DeepDRiD (China)",
+        "n": 184,
+        "external_auc": 0.8303402646502835,
+        "agreement": 0.8010869565217391,
+        "confidence": 0.8086507783604169
+      },
+      {
+        "key": "aptos",
+        "label": "APTOS (India)",
+        "n": 590,
+        "external_auc": 0.6724561907497846,
+        "agreement": 0.8552542372881355,
+        "confidence": 0.8449417003963519
+      },
+      {
+        "key": "idrid",
+        "label": "IDRiD (India)",
+        "n": 128,
+        "external_auc": 0.79052734375,
+        "agreement": 0.7546875,
+        "confidence": 0.8040255527424848
+      },
+      {
+        "key": "messidor2",
+        "label": "Messidor-2 (France)",
+        "n": 70,
+        "external_auc": 0.8579591836734693,
+        "agreement": 0.9485714285714286,
+        "confidence": 0.9400754031171632
+      },
+      {
+        "key": "eyepacs",
+        "label": "EyePACS (USA)",
+        "n": 1416,
+        "external_auc": 0.6971396310127996,
+        "agreement": 0.9127118644067795,
+        "confidence": 0.882356427467582
+      }
+    ],
+    "correlations": {
+      "agreement": {
+        "spearman_rho": -0.3214285714285715,
+        "p": 0.4820720382996778,
+        "n": 7
+      },
+      "confidence": {
+        "spearman_rho": -0.14285714285714288,
+        "p": 0.7599453002180927,
+        "n": 7
+      }
+    }
+  }
+}

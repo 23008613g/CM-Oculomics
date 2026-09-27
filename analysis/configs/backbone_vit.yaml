@@ -1,0 +1,37 @@
+aug:
+  color_jitter: 0.1
+  hflip: true
+  random_resized_crop: true
+  rotate: 15
+data:
+  image_dir: data_anon/images
+  image_size: 224
+  label_col: grade
+  num_workers: 4
+  root: data_anon
+  splits_csv: data_anon/splits.csv
+model:
+  backbone: vit_base_patch16_224
+  drop_rate: 0.2
+  pretrained: true
+  retfound: false
+  retfound_file: RETFound_cfp_weights.pth
+  retfound_repo: sabarimj/retfound
+output:
+  dir: results/backbone_vit
+  save_best: true
+seed: 42
+task: dr_grade
+train:
+  amp: true
+  batch_size: 16
+  class_weight: balanced
+  early_stop_patience: 12
+  epochs: 40
+  fold: 0
+  lr: 5.0e-05
+  monitor: balanced_acc
+  optimizer: adamw
+  scheduler: cosine
+  warmup_epochs: 5
+  weight_decay: 0.05

@@ -1,0 +1,234 @@
+{
+  "calibration": {
+    "dinov2_image_ece": 0.13,
+    "dinov2_image_ece_ci": [
+      0.114,
+      0.148
+    ],
+    "dinov2_patient_ece": 0.085,
+    "dinov2_patient_ece_ci": [
+      0.067,
+      0.11
+    ],
+    "retfound_image_ece": 0.067,
+    "retfound_patient_ece": 0.031,
+    "dinov2_calibration_slope": 0.9,
+    "retfound_calibration_slope": 0.54,
+    "temperature_fitted_by_nll": 1.14,
+    "ece_after_nll_temperature": 0.138,
+    "temperature_minimising_ece": 0.39,
+    "ece_at_that_temperature": 0.104,
+    "ece_optimum_is_interior_to_grid": true,
+    "grid": [
+      0.2,
+      5.000000000000004
+    ]
+  },
+  "screening": {
+    "threshold_youden": 0.618,
+    "sensitivity": 0.915,
+    "specificity": 0.916,
+    "ppv": 0.512,
+    "npv": 0.991,
+    "brier": 0.083,
+    "npv_range_thr_0.3_to_0.7": [
+      0.984,
+      0.993
+    ]
+  },
+  "risk_strata": {
+    "Low": {
+      "rate_pct": 0.4,
+      "n": 552
+    },
+    "Medium": {
+      "rate_pct": 2.9,
+      "n": 105
+    },
+    "High": {
+      "rate_pct": 44.6,
+      "n": 148
+    }
+  },
+  "multivariable_logit": {
+    "n": 805,
+    "terms": {
+      "vessel_density": {
+        "OR": 0.08,
+        "ci": [
+          0.02,
+          0.36
+        ],
+        "p": 0.0009876295578498
+      },
+      "vessel_skeleton": {
+        "OR": 74.94,
+        "ci": [
+          12.31,
+          456.32
+        ],
+        "p": 2.823139743585825e-06
+      },
+      "fractal_dim": {
+        "OR": 0.43,
+        "ci": [
+          0.18,
+          1.05
+        ],
+        "p": 0.06509988871311356
+      },
+      "dark_lesion_area": {
+        "OR": 1.18,
+        "ci": [
+          0.92,
+          1.52
+        ],
+        "p": 0.19626886720389025
+      },
+      "bright_lesion_area": {
+        "OR": 1.02,
+        "ci": [
+          0.75,
+          1.39
+        ],
+        "p": 0.8961357844123878
+      },
+      "年龄": {
+        "OR": 0.41,
+        "ci": [
+          0.28,
+          0.6
+        ],
+        "p": 4.897638082906768e-06
+      },
+      "糖尿病年限（年）": {
+        "OR": 1.2,
+        "ci": [
+          0.82,
+          1.76
+        ],
+        "p": 0.35169642730086026
+      },
+      "BMI": {
+        "OR": 0.79,
+        "ci": [
+          0.61,
+          1.02
+        ],
+        "p": 0.07014455150586224
+      },
+      "HbA1c": {
+        "OR": 0.93,
+        "ci": [
+          0.71,
+          1.23
+        ],
+        "p": 0.6306961124051791
+      },
+      "LDL": {
+        "OR": 0.99,
+        "ci": [
+          0.74,
+          1.33
+        ],
+        "p": 0.95240964596627
+      },
+      "HDL": {
+        "OR": 1.16,
+        "ci": [
+          0.9,
+          1.5
+        ],
+        "p": 0.2373947354675212
+      },
+      "Triglyceride": {
+        "OR": 0.82,
+        "ci": [
+          0.63,
+          1.07
+        ],
+        "p": 0.13685859852134494
+      }
+    }
+  },
+  "subgroup_auc": {
+    "Female": {
+      "n": 268,
+      "auc": 0.946
+    },
+    "Male": {
+      "n": 537,
+      "auc": 0.952
+    },
+    "Age<65": {
+      "n": 384,
+      "auc": 0.977
+    },
+    "Age>=65": {
+      "n": 421,
+      "auc": 0.901
+    },
+    "Dur<7y": {
+      "n": 464,
+      "auc": 0.959
+    },
+    "Dur>=7y": {
+      "n": 341,
+      "auc": 0.941
+    },
+    "气阴两虚证": {
+      "n": 114,
+      "auc": 0.995
+    },
+    "痰瘀阻滞证": {
+      "n": 305,
+      "auc": 0.956
+    },
+    "脾肾两虚证": {
+      "n": 165,
+      "auc": 0.936
+    },
+    "阴虚夹瘀证": {
+      "n": 221,
+      "auc": 0.932
+    }
+  },
+  "risk_vs_labs": {
+    "年龄": {
+      "spearman_r": -0.12,
+      "p": 0.0172,
+      "n": 396
+    },
+    "糖尿病年限（年）": {
+      "spearman_r": 0.018,
+      "p": 0.7253,
+      "n": 396
+    },
+    "BMI": {
+      "spearman_r": -0.036,
+      "p": 0.4755,
+      "n": 396
+    },
+    "HbA1c": {
+      "spearman_r": -0.046,
+      "p": 0.362,
+      "n": 396
+    },
+    "LDL": {
+      "spearman_r": -0.02,
+      "p": 0.6844,
+      "n": 396
+    },
+    "HDL": {
+      "spearman_r": -0.113,
+      "p": 0.0251,
+      "n": 396
+    },
+    "Triglyceride": {
+      "spearman_r": -0.04,
+      "p": 0.4306,
+      "n": 396
+    }
+  },
+  "risk_vs_labs_max_abs_r": 0.12
+}

@@ -1,0 +1,50 @@
+{
+  "generated": "2026-09-22T10:53:31",
+  "source_script": "scripts/27_dino_experiment.py labeleff --backbone dinov2_l --res 224 --lr 1e-5 --bs 16",
+  "images": "data_anon/images (overlay-masked set, script 49)",
+  "protocol": "5-fold CV; within each fold the training rows are subsampled to the given fraction, stratified by grade at the IMAGE level (random_state=42); the validation fold is never subsampled. AUC is pooled out-of-fold over all 805 images.",
+  "train_images_per_fold_mean": {
+    "0.1": 64,
+    "0.25": 161,
+    "0.5": 322,
+    "1.0": 644
+  },
+  "curve": {
+    "0.1": {
+      "image_auc": 0.8688,
+      "patient_auc": 0.8398,
+      "n_eval_images": 805,
+      "n_eval_patients": 396
+    },
+    "0.25": {
+      "image_auc": 0.8806,
+      "patient_auc": 0.8054,
+      "n_eval_images": 805,
+      "n_eval_patients": 396
+    },
+    "0.5": {
+      "image_auc": 0.9353,
+      "patient_auc": 0.8964,
+      "n_eval_images": 805,
+      "n_eval_patients": 396
+    },
+    "1.0": {
+      "image_auc": 0.9657,
+      "patient_auc": 0.9395,
+      "n_eval_images": 805,
+      "n_eval_patients": 396
+    }
+  },
+  "full_data_repeats_n3": {
+    "image_mean": 0.9448,
+    "image_sd": 0.0063,
+    "image_values": [
+      0.9517,
+      0.9432,
+      0.9394
+    ],
+    "patient_mean": 0.9109,
+    "patient_sd": 0.0085
+  },
+  "retfound_label_efficiency": "NOT RERUN after masking; old values came from a different protocol (tcm_retina/engines/train_label_efficiency.py, fixed validation fold, train_n 58/163/309/639) and are not comparable"
+}

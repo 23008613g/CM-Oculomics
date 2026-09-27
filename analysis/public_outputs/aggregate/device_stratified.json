@@ -1,0 +1,39 @@
+{
+  "source": "oof_dinov2_l_res224_frac1.0_main.csv",
+  "n_images": 805,
+  "strata": {
+    "Canon digital back": {
+      "images": 88,
+      "pdr": 0,
+      "patients": 34,
+      "auc": null
+    },
+    "Topcon + frame grabber": {
+      "images": 201,
+      "pdr": 5,
+      "patients": 105,
+      "auc": 0.7454,
+      "auc_ci95": [
+        0.464,
+        0.968
+      ]
+    },
+    "VISUCAM 200": {
+      "images": 516,
+      "pdr": 66,
+      "patients": 270,
+      "auc": 0.9616,
+      "auc_ci95": [
+        0.943,
+        0.977
+      ]
+    }
+  },
+  "pooled_auc": 0.9517,
+  "device_only_auc": 0.6195,
+  "adjusted_model_logit": {
+    "coef": 0.871,
+    "p": 2.3577084087213978e-20
+  },
+  "visucam_patient_auc": 0.9304
+}

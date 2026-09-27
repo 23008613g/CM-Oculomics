@@ -1,0 +1,78 @@
+{
+ "per_image": {
+  "n": 805,
+  "n_intolerant": 71,
+  "threshold": 0.618,
+  "AUC": 0.952,
+  "PR_AUC": 0.742,
+  "balanced_acc": 0.916,
+  "sensitivity": 0.915,
+  "specificity": 0.916,
+  "accuracy": 0.916,
+  "macroF1": 0.804,
+  "kappa": 0.613,
+  "CI95": {
+   "AUC": [
+    0.921,
+    0.976
+   ],
+   "PR_AUC": [
+    0.649,
+    0.833
+   ],
+   "balanced_acc": [
+    0.879,
+    0.946
+   ],
+   "sensitivity": [
+    0.845,
+    0.972
+   ],
+   "specificity": [
+    0.894,
+    0.936
+   ]
+  }
+ },
+ "per_patient": {
+  "n_patients": 396,
+  "n_intolerant_patients": 56,
+  "threshold": 0.331,
+  "AUC": 0.914,
+  "PR_AUC": 0.679,
+  "balanced_acc": 0.872,
+  "sensitivity": 0.911,
+  "specificity": 0.832,
+  "accuracy": 0.843,
+  "macroF1": 0.762,
+  "kappa": 0.535,
+  "CI95": {
+   "AUC": [
+    0.87,
+    0.951
+   ],
+   "PR_AUC": [
+    0.579,
+    0.785
+   ],
+   "balanced_acc": [
+    0.828,
+    0.909
+   ],
+   "sensitivity": [
+    0.821,
+    0.982
+   ],
+   "specificity": [
+    0.794,
+    0.871
+   ]
+  }
+ },
+ "_source": {
+  "oof_csv": "oof_dinov2_l_res224_frac1.0_main.csv",
+  "patient_rule": "mean probability per patient; label = max over eyes",
+  "threshold_rule": "Youden-optimal on the pooled out-of-fold predictions",
+  "bootstrap": "stratified, 2000 replicates, percentile interval"
+ }
+}
