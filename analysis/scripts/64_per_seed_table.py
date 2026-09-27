@@ -123,6 +123,19 @@ with pd.ExcelWriter(xl, engine="openpyxl") as w:
     pv = os.path.join(ROOT, "results", "model_provenance.csv")
     if os.path.exists(pv):
         pd.read_csv(pv).to_excel(w, sheet_name="model_provenance", index=False)
+    # same-task control (scripts/76-77): models trained and anchored on DDR for PDR versus NPDR
+    st = os.path.join(ROOT, "results", "same_task", "same_task_rows.csv")
+    if os.path.exists(st):
+        pd.DataFrame({"note": [
+            "Same-task control (Supplementary Note S2, Figure S14; scripts/76 and 77). Ten models "
+            "(DINOv2 and RETFound, seeds 0-4) trained for PDR versus NPDR on 70% of the DDR training "
+            "images of grades 1-4, early-stopped on 15%, and anchored on the remaining 15% (470 "
+            "images, 69 PDR). setting 'balanced' = the class-balanced public subsets of this paper "
+            "(DDR excluded); 'natural' = the full APTOS, EyePACS, Messidor-2 and IDRiD cohorts, "
+            "grades 1-4, at their own prevalence. balanced_accuracy is achieved, at threshold 0.5; "
+            "the other columns are label-free estimates of it."]}).to_excel(
+            w, sheet_name="same_task_control", index=False)
+        pd.read_csv(st).to_excel(w, sheet_name="same_task_control", index=False, startrow=3)
 df.to_csv(os.path.join(OUT, "per_seed_table.csv"), index=False)
 print("per_model rows: %d (anchor %d, external %d)" % (len(df), int((df.role == "anchor").sum()),
                                                         int((df.role != "anchor").sum())))

@@ -84,6 +84,15 @@
       "saved": "kept, not released (CC BY-NC weights)"
     },
     {
+      "models": "Same-task control models",
+      "backbone": "DINOv2 (lr 1e-5) and RETFound (lr 5e-5), 224 px",
+      "training": "public DDR training images of grades 1-4, proliferative versus non-proliferative: 70% of them (2188 images, 319 proliferative); no development-cohort image",
+      "selection": "early stopping on 15% of DDR (469 images, 68 proliferative); anchor the remaining 15% (470, 69); split stratified at image level (DDR has no patient identifiers)",
+      "runs": "5 per backbone (seeds 0-4)",
+      "used_for": "same-task control of the estimators (Section 2.5; Supplementary Note S2, Table S4, Figure S14)",
+      "saved": "checkpoints kept, not released; public-cohort predictions released"
+    },
+    {
       "models": "Syndrome and fusion models",
       "backbone": "see Supplementary Note S1",
       "training": "cross-validation set, same patient-level folds",

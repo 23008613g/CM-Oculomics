@@ -1,0 +1,452 @@
+{
+  "anchor": {
+    "n": 470,
+    "n_pdr": 69,
+    "auc_per_model": {
+      "dinov2_l_seed0": 0.974,
+      "dinov2_l_seed1": 0.969,
+      "dinov2_l_seed2": 0.977,
+      "dinov2_l_seed3": 0.961,
+      "dinov2_l_seed4": 0.975,
+      "retfound_seed0": 0.958,
+      "retfound_seed1": 0.932,
+      "retfound_seed2": 0.948,
+      "retfound_seed3": 0.95,
+      "retfound_seed4": 0.966
+    },
+    "balanced_acc": {
+      "dinov2_l_seed0": 0.927,
+      "dinov2_l_seed1": 0.91,
+      "dinov2_l_seed2": 0.913,
+      "dinov2_l_seed3": 0.895,
+      "dinov2_l_seed4": 0.892,
+      "retfound_seed0": 0.921,
+      "retfound_seed1": 0.878,
+      "retfound_seed2": 0.897,
+      "retfound_seed3": 0.903,
+      "retfound_seed4": 0.889
+    }
+  },
+  "settings": {
+    "balanced": {
+      "cohorts": {
+        "jsiec": {
+          "n": 78,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 1.0,
+            "retfound": 0.995
+          },
+          "mean_true": 0.942,
+          "mean_estimate": {
+            "ALine-D": 0.9,
+            "ALine-S": 0.921,
+            "DoC": 0.906,
+            "ATC": 0.9,
+            "No-shift": 0.902
+          }
+        },
+        "deepdrid": {
+          "n": 184,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 0.916,
+            "retfound": 0.869
+          },
+          "mean_true": 0.8,
+          "mean_estimate": {
+            "ALine-D": 0.843,
+            "ALine-S": 0.868,
+            "DoC": 0.878,
+            "ATC": 0.825,
+            "No-shift": 0.902
+          }
+        },
+        "aptos": {
+          "n": 590,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 0.774,
+            "retfound": 0.771
+          },
+          "mean_true": 0.625,
+          "mean_estimate": {
+            "ALine-D": 0.866,
+            "ALine-S": 0.875,
+            "DoC": 0.88,
+            "ATC": 0.846,
+            "No-shift": 0.902
+          }
+        },
+        "idrid": {
+          "n": 128,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 0.873,
+            "retfound": 0.865
+          },
+          "mean_true": 0.74,
+          "mean_estimate": {
+            "ALine-D": 0.808,
+            "ALine-S": 0.845,
+            "DoC": 0.854,
+            "ATC": 0.763,
+            "No-shift": 0.902
+          }
+        },
+        "messidor2": {
+          "n": 70,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 0.863,
+            "retfound": 0.881
+          },
+          "mean_true": 0.577,
+          "mean_estimate": {
+            "ALine-D": 0.878,
+            "ALine-S": 0.92,
+            "DoC": 0.883,
+            "ATC": 0.853,
+            "No-shift": 0.902
+          }
+        },
+        "eyepacs": {
+          "n": 1416,
+          "prevalence": 0.5,
+          "ensemble_auc": {
+            "dinov2_l": 0.848,
+            "retfound": 0.817
+          },
+          "mean_true": 0.63,
+          "mean_estimate": {
+            "ALine-D": 0.879,
+            "ALine-S": 0.894,
+            "DoC": 0.884,
+            "ATC": 0.859,
+            "No-shift": 0.902
+          }
+        }
+      },
+      "n_pairs": 60,
+      "summary": {
+        "ALine-D": {
+          "mae": 0.158,
+          "bias": 0.143,
+          "worst": 0.353,
+          "spearman": -0.01
+        },
+        "ALine-S": {
+          "mae": 0.178,
+          "bias": 0.168,
+          "worst": 0.41,
+          "spearman": -0.12
+        },
+        "DoC": {
+          "mae": 0.175,
+          "bias": 0.162,
+          "worst": 0.369,
+          "spearman": 0.18
+        },
+        "ATC": {
+          "mae": 0.149,
+          "bias": 0.122,
+          "worst": 0.357,
+          "spearman": 0.15
+        },
+        "No-shift": {
+          "mae": 0.198,
+          "bias": 0.183,
+          "worst": 0.374,
+          "spearman": 0.16
+        },
+        "Mean observed (uses labels)": {
+          "mae": 0.113
+        }
+      },
+      "true_range": [
+        0.514,
+        1.0
+      ]
+    },
+    "natural": {
+      "cohorts": {
+        "aptos": {
+          "n": 1857,
+          "prevalence": 0.159,
+          "ensemble_auc": {
+            "dinov2_l": 0.767,
+            "retfound": 0.768
+          },
+          "mean_true": 0.627,
+          "mean_estimate": {
+            "ALine-D": 0.893,
+            "ALine-S": 0.904,
+            "DoC": 0.891,
+            "ATC": 0.879,
+            "No-shift": 0.902
+          }
+        },
+        "eyepacs": {
+          "n": 9316,
+          "prevalence": 0.076,
+          "ensemble_auc": {
+            "dinov2_l": 0.857,
+            "retfound": 0.815
+          },
+          "mean_true": 0.63,
+          "mean_estimate": {
+            "ALine-D": 0.932,
+            "ALine-S": 0.952,
+            "DoC": 0.91,
+            "ATC": 0.931,
+            "No-shift": 0.902
+          }
+        },
+        "messidor2": {
+          "n": 727,
+          "prevalence": 0.048,
+          "ensemble_auc": {
+            "dinov2_l": 0.901,
+            "retfound": 0.896
+          },
+          "mean_true": 0.578,
+          "mean_estimate": {
+            "ALine-D": 0.947,
+            "ALine-S": 0.975,
+            "DoC": 0.922,
+            "ATC": 0.955,
+            "No-shift": 0.902
+          }
+        },
+        "idrid": {
+          "n": 326,
+          "prevalence": 0.196,
+          "ensemble_auc": {
+            "dinov2_l": 0.89,
+            "retfound": 0.884
+          },
+          "mean_true": 0.743,
+          "mean_estimate": {
+            "ALine-D": 0.864,
+            "ALine-S": 0.895,
+            "DoC": 0.875,
+            "ATC": 0.827,
+            "No-shift": 0.902
+          }
+        }
+      },
+      "n_pairs": 40,
+      "summary": {
+        "ALine-D": {
+          "mae": 0.265,
+          "bias": 0.265,
+          "worst": 0.415,
+          "spearman": -0.63
+        },
+        "ALine-S": {
+          "mae": 0.287,
+          "bias": 0.287,
+          "worst": 0.461,
+          "spearman": -0.68
+        },
+        "DoC": {
+          "mae": 0.255,
+          "bias": 0.255,
+          "worst": 0.4,
+          "spearman": -0.48
+        },
+        "ATC": {
+          "mae": 0.256,
+          "bias": 0.254,
+          "worst": 0.46,
+          "spearman": -0.65
+        },
+        "No-shift": {
+          "mae": 0.258,
+          "bias": 0.258,
+          "worst": 0.376,
+          "spearman": 0.3
+        },
+        "Mean observed (uses labels)": {
+          "mae": 0.052
+        }
+      },
+      "true_range": [
+        0.513,
+        0.808
+      ]
+    }
+  },
+  "mechanism_at_0.5": {
+    "anchor": {
+      "sensitivity_range": [
+        0.797,
+        0.913
+      ],
+      "specificity_range": [
+        0.923,
+        0.988
+      ],
+      "mean_confidence": 0.946,
+      "mean_pairwise_agreement": 0.93
+    },
+    "bal_jsiec": {
+      "sensitivity_range": [
+        0.692,
+        1.0
+      ],
+      "specificity_range": [
+        0.949,
+        1.0
+      ],
+      "mean_confidence": 0.949,
+      "mean_pairwise_agreement": 0.928
+    },
+    "bal_deepdrid": {
+      "sensitivity_range": [
+        0.533,
+        0.783
+      ],
+      "specificity_range": [
+        0.815,
+        0.989
+      ],
+      "mean_confidence": 0.921,
+      "mean_pairwise_agreement": 0.871
+    },
+    "bal_aptos": {
+      "sensitivity_range": [
+        0.18,
+        0.376
+      ],
+      "specificity_range": [
+        0.888,
+        0.99
+      ],
+      "mean_confidence": 0.923,
+      "mean_pairwise_agreement": 0.894
+    },
+    "bal_idrid": {
+      "sensitivity_range": [
+        0.328,
+        0.734
+      ],
+      "specificity_range": [
+        0.875,
+        0.969
+      ],
+      "mean_confidence": 0.897,
+      "mean_pairwise_agreement": 0.836
+    },
+    "bal_messidor2": {
+      "sensitivity_range": [
+        0.029,
+        0.286
+      ],
+      "specificity_range": [
+        0.943,
+        1.0
+      ],
+      "mean_confidence": 0.926,
+      "mean_pairwise_agreement": 0.906
+    },
+    "bal_eyepacs": {
+      "sensitivity_range": [
+        0.213,
+        0.391
+      ],
+      "specificity_range": [
+        0.949,
+        0.987
+      ],
+      "mean_confidence": 0.927,
+      "mean_pairwise_agreement": 0.907
+    },
+    "nat_aptos": {
+      "sensitivity_range": [
+        0.18,
+        0.376
+      ],
+      "specificity_range": [
+        0.912,
+        0.985
+      ],
+      "mean_confidence": 0.934,
+      "mean_pairwise_agreement": 0.922
+    },
+    "nat_eyepacs": {
+      "sensitivity_range": [
+        0.213,
+        0.391
+      ],
+      "specificity_range": [
+        0.956,
+        0.987
+      ],
+      "mean_confidence": 0.953,
+      "mean_pairwise_agreement": 0.96
+    },
+    "nat_messidor2": {
+      "sensitivity_range": [
+        0.029,
+        0.286
+      ],
+      "specificity_range": [
+        0.975,
+        0.997
+      ],
+      "mean_confidence": 0.965,
+      "mean_pairwise_agreement": 0.975
+    },
+    "nat_idrid": {
+      "sensitivity_range": [
+        0.328,
+        0.734
+      ],
+      "specificity_range": [
+        0.863,
+        0.977
+      ],
+      "mean_confidence": 0.918,
+      "mean_pairwise_agreement": 0.892
+    }
+  },
+  "paper_setting_task_change_plus_prior_shift": {
+    "ALine-D": {
+      "mae": 0.18,
+      "bias": 0.146,
+      "worst": 0.489,
+      "spearman_with_true": -0.28
+    },
+    "ALine-S": {
+      "mae": 0.244,
+      "bias": 0.216,
+      "worst": 0.5,
+      "spearman_with_true": -0.57
+    },
+    "DoC": {
+      "mae": 0.198,
+      "bias": 0.177,
+      "worst": 0.546,
+      "spearman_with_true": -0.15
+    },
+    "ATC": {
+      "mae": 0.214,
+      "bias": 0.188,
+      "worst": 0.5,
+      "spearman_with_true": -0.4
+    },
+    "No-shift": {
+      "mae": 0.18,
+      "bias": 0.161,
+      "worst": 0.393,
+      "spearman_with_true": 0.19
+    },
+    "Mean observed (uses labels)": {
+      "mae": 0.094,
+      "bias": -0.0,
+      "worst": 0.274,
+      "spearman_with_true": null
+    }
+  }
+}

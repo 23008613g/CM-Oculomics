@@ -18,7 +18,9 @@ analysis/
     ├── external_predictions/   pred_<backbone>_seed<k>_<cohort>.npz  (ys = label, pos = score)
     │                           subset_labels_<cohort>.csv  (the class-balanced public image lists,
     │                           in the same order as the .npz arrays)
-    └── aggregate/              summary JSON/CSV files behind the text and figures
+    ├── aggregate/              summary JSON/CSV files behind the text and figures
+    └── same_task/              same-task control (public cohorts only): DDR split, per-model
+                                predictions, estimators.json, same_task_rows.csv, training log
 ```
 
 ## What reproduces what (figure and section numbers of the submitted paper)
@@ -31,6 +33,7 @@ analysis/
 | Fig. 4, fixed- and random-effects pooling, variance components | `40_external_meta.py`, `72_random_effects.py` | **no**: copy `public_outputs/external_predictions/*.npz` to `results/external2/` and `aggregate/heldout_test.json` to `results/` |
 | Published estimators and the no-shift baseline (Fig. 5) | `46_aline_atc_doc.py`, `75_estimator_baselines.py` | yes (held-out anchor); `75` runs from `aggregate/aline_atc_doc.json` |
 | Label-free signals (Figure S4, Table S2), sub-cohort analysis (Figure S5) | `42`, `44`, `45`, `47` | yes (development embeddings) |
+| Same-task control of the estimators (Section 2.5, Table S4, Figure S14) | `76_same_task_control.py`, `77_same_task_estimators.py` | **no**: public cohorts only. `77`: set `SAME_TASK_DIR=public_outputs/same_task` and copy `aggregate/estimator_baselines.json` to `results/external2/`; `76` retrains the ten models (under 4 h on one RTX 3090) |
 | Cost of local validation (Fig. 6, Figure S6) | `74_local_validation_cost.py` | **no**: same predictions, in `results/external2/` |
 | Per-model table and model provenance (Data S1, Table S3) | `64_per_seed_table.py`, `69_model_provenance.py` | anchor rows and counts only |
 | Recalibration and decision curves (Supplementary Note S4, Figures S10-S11) | `73_recalibration.py`, `32_figures_dinov2.py` | yes |

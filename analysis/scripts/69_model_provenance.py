@@ -12,7 +12,8 @@ from the split file and the released checkpoint identified by its hash.
 Sources checked: scripts/27_dino_experiment.py (run_cv, run_standard: early stopping on the
 evaluated fold; learning-rate sweep scored by AUC on fold 0), scripts/38_external2_benchmark.py
 (seed models: folds != 0, early stop on fold 0, lr 1e-5 / 5e-5, seeds 0-4),
-scripts/30_dino_artifacts.py (deployed model, Grad-CAM, t-SNE, MC-dropout),
+scripts/30_dino_artifacts.py (deployed model, Grad-CAM, t-SNE, MC-dropout), scripts/76 (same-task
+control on DDR),
 results/retfound_antivegf/metrics_fold0.json (RETFound single model validated on fold 0).
 
 USAGE   python scripts/69_model_provenance.py
@@ -29,6 +30,9 @@ tv, te = sp[sp.split == "train_val"], sp[sp.split == "test"]
 f14, f0 = tv[tv.fold != 0], tv[tv.fold == 0]
 n = dict(cv=len(tv), cv_pdr=int((tv.grade == "PDR").sum()), f14=len(f14), f14_pdr=int((f14.grade == "PDR").sum()),
          f0=len(f0), f0_pdr=int((f0.grade == "PDR").sum()), te=len(te), te_pdr=int((te.grade == "PDR").sum()))
+ss = pd.read_csv(os.path.join(ROOT, "results", "same_task", "split.csv"))      # scripts/76
+st = {k: int((ss.part == p).sum()) for k, p in (("train", "train"), ("es", "early_stop"), ("an", "anchor"))}
+st.update({k + "_pdr": int(ss[ss.part == p].y.sum()) for k, p in (("train", "train"), ("es", "early_stop"), ("an", "anchor"))})
 sha = hashlib.sha256(open(os.path.join(ROOT, "results", "dino_experiment", "dino_deploy.pth"), "rb").read()).hexdigest()
 
 CV_STOP = ("each fold model stops early on the fold it then predicts (balanced accuracy at 0.5, "
@@ -70,6 +74,15 @@ rows = [
     dict(models="RETFound single model", backbone="RETFound ViT-L/16",
          training=F14, selection=STOP0, runs="1", used_for="RETFound Grad-CAM (Fig 7a)",
          saved="kept, not released (CC BY-NC weights)"),
+    dict(models="Same-task control models", backbone="DINOv2 (lr 1e-5) and RETFound (lr 5e-5), 224 px",
+         training="public DDR training images of grades 1-4, proliferative versus non-proliferative: "
+                  "70%% of them (%d images, %d proliferative); no development-cohort image" % (st["train"], st["train_pdr"]),
+         selection="early stopping on 15%% of DDR (%d images, %d proliferative); anchor the remaining 15%% "
+                   "(%d, %d); split stratified at image level (DDR has no patient identifiers)"
+                   % (st["es"], st["es_pdr"], st["an"], st["an_pdr"]),
+         runs="5 per backbone (seeds 0-4)",
+         used_for="same-task control of the estimators (Section 2.5; Supplementary Note S2, Table S4, Figure S14)",
+         saved="checkpoints kept, not released; public-cohort predictions released"),
     dict(models="Syndrome and fusion models", backbone="see Supplementary Note S1",
          training="cross-validation set, same patient-level folds", selection="as run 1", runs="1 each",
          used_for="Supplementary Note S1 only", saved="predictions only"),
