@@ -1,0 +1,157 @@
+{
+  "DINOv2 (primary)": {
+    "n_repeats": 3,
+    "image_aucs": [
+      0.9517,
+      0.9432,
+      0.9394
+    ],
+    "patient_aucs": [
+      0.9139,
+      0.9174,
+      0.9013
+    ],
+    "image_mean": 0.9448,
+    "patient_mean": 0.9109,
+    "image_sd": 0.0063,
+    "patient_sd": 0.0085,
+    "run1_image_ci95": [
+      0.9222,
+      0.9753
+    ],
+    "run1_patient_ci95": [
+      0.8688,
+      0.9504
+    ],
+    "files": [
+      "oof_dinov2_l_res224_frac1.0_rep1.csv",
+      "oof_dinov2_l_res224_frac1.0_rep2.csv",
+      "oof_dinov2_l_res224_frac1.0_rep3.csv"
+    ]
+  },
+  "RETFound": {
+    "n_repeats": 3,
+    "image_aucs": [
+      0.9289,
+      0.9393,
+      0.9372
+    ],
+    "patient_aucs": [
+      0.9095,
+      0.9191,
+      0.9062
+    ],
+    "image_mean": 0.9352,
+    "patient_mean": 0.9116,
+    "image_sd": 0.0055,
+    "patient_sd": 0.0067,
+    "run1_image_ci95": [
+      0.8923,
+      0.9604
+    ],
+    "run1_patient_ci95": [
+      0.8605,
+      0.9493
+    ],
+    "files": [
+      "oof_retfound_res224_frac1.0_rep1.csv",
+      "oof_retfound_res224_frac1.0_rep2.csv",
+      "oof_retfound_res224_frac1.0_rep3.csv"
+    ]
+  },
+  "Swin-V2": {
+    "n_repeats": 1,
+    "image_aucs": [
+      0.9503
+    ],
+    "patient_aucs": [
+      0.9122
+    ],
+    "image_mean": 0.9503,
+    "patient_mean": 0.9122,
+    "image_sd": null,
+    "patient_sd": null,
+    "run1_image_ci95": [
+      0.919,
+      0.9748
+    ],
+    "run1_patient_ci95": [
+      0.866,
+      0.9492
+    ],
+    "files": [
+      "oof_swinv2_res256_frac1.0_main.csv"
+    ]
+  },
+  "ViT-B": {
+    "n_repeats": 1,
+    "image_aucs": [
+      0.9046
+    ],
+    "patient_aucs": [
+      0.8675
+    ],
+    "image_mean": 0.9046,
+    "patient_mean": 0.8675,
+    "image_sd": null,
+    "patient_sd": null,
+    "run1_image_ci95": [
+      0.8524,
+      0.9495
+    ],
+    "run1_patient_ci95": [
+      0.8066,
+      0.9201
+    ],
+    "files": [
+      "oof_vit_b_res224_frac1.0_main.csv"
+    ]
+  },
+  "ResNet-50": {
+    "n_repeats": 1,
+    "image_aucs": [
+      0.8779
+    ],
+    "patient_aucs": [
+      0.8527
+    ],
+    "image_mean": 0.8779,
+    "patient_mean": 0.8527,
+    "image_sd": null,
+    "patient_sd": null,
+    "run1_image_ci95": [
+      0.832,
+      0.921
+    ],
+    "run1_patient_ci95": [
+      0.8021,
+      0.8971
+    ],
+    "files": [
+      "oof_resnet50_res224_frac1.0_main.csv"
+    ]
+  },
+  "delong_dinov2_vs_retfound_per_repeat": [
+    {
+      "repeat": 1,
+      "dinov2": 0.9517,
+      "retfound": 0.9289,
+      "delta": 0.0228,
+      "p": 0.16011944659500044
+    },
+    {
+      "repeat": 2,
+      "dinov2": 0.9432,
+      "retfound": 0.9393,
+      "delta": 0.0039,
+      "p": 0.7912161301972913
+    },
+    {
+      "repeat": 3,
+      "dinov2": 0.9394,
+      "retfound": 0.9372,
+      "delta": 0.0022,
+      "p": 0.9074559943044218
+    }
+  ]
+}

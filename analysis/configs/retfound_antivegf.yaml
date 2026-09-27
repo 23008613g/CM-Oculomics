@@ -1,0 +1,45 @@
+# TCM-Retina 核心实验:眼底图 → anti-VEGF 耐受性预测
+# 标签: NPDR=耐受(响应), PDR=不耐受(难治)  —— 现有图直接可做
+# 不平衡: 耐受 ~863 : 不耐受 ~82 (≈10:1) → class_weight + 监控 PR-AUC
+task: dr_grade            # 复用二分类管线(NPDR/PDR);语义=耐受/不耐受
+seed: 42
+
+data:
+  root: data_anon
+  splits_csv: data_anon/splits.csv
+  image_dir: data_anon/images
+  label_col: grade
+  image_size: 224
+  num_workers: 4
+
+model:
+  backbone: vit_large_patch16_224
+  pretrained: false
+  retfound: true
+  retfound_repo: sabarimj/retfound
+  retfound_file: RETFound_cfp_weights.pth
+  drop_rate: 0.2
+
+train:
+  fold: 0
+  epochs: 40
+  batch_size: 16
+  lr: 0.00005
+  weight_decay: 0.05
+  optimizer: adamw
+  scheduler: cosine
+  warmup_epochs: 5
+  class_weight: balanced     # 关键:处理10:1不平衡
+  monitor: balanced_acc      # 用均衡准确率选点(兼顾敏感度,避免偏多数类)
+  amp: true
+  early_stop_patience: 12
+
+aug:
+  hflip: true
+  rotate: 15
+  color_jitter: 0.1
+  random_resized_crop: true
+
+output:
+  dir: results/retfound_antivegf
+  save_best: true

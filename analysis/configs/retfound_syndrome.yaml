@@ -1,0 +1,44 @@
+# TCM-Retina 引擎①(RETFound版):眼底图 → 中医证型(4分类)
+# RETFound = ViT-Large/16, 224分辨率, 160万眼底图MAE自监督预训练
+# 许可证 CC BY-NC 4.0(学术可用,需引用RETFound Nature论文)
+task: tcm_syndrome
+seed: 42
+
+data:
+  root: data_anon
+  splits_csv: data_anon/splits.csv
+  image_dir: data_anon/images
+  label_col: tcm_syndrome
+  image_size: 224          # RETFound 用 224
+  num_workers: 4
+
+model:
+  backbone: vit_large_patch16_224
+  pretrained: false        # 不用 timm 的 ImageNet,改用 RETFound 权重
+  retfound: true
+  retfound_repo: sabarimj/retfound
+  retfound_file: RETFound_cfp_weights.pth
+  drop_rate: 0.2
+
+train:
+  fold: 0
+  epochs: 40
+  batch_size: 16           # ViT-L 较大,3090 24G 用 16 + AMP 稳妥
+  lr: 0.00005              # 微调基础模型用更小 lr
+  weight_decay: 0.05
+  optimizer: adamw
+  scheduler: cosine
+  warmup_epochs: 5
+  class_weight: balanced
+  amp: true
+  early_stop_patience: 10
+
+aug:
+  hflip: true
+  rotate: 15
+  color_jitter: 0.1
+  random_resized_crop: true
+
+output:
+  dir: results/retfound_syndrome
+  save_best: true

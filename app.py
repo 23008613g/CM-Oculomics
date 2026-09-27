@@ -192,19 +192,23 @@ def analyze(image):
     pred_class = int(probs.argmax().item())      # the class the model predicts
     high = prob >= THRESH
     pct = prob * 100.0
-    label = "INTOLERANT — high risk" if high else "TOLERANT — low risk"
+    label = "HIGHER RISK — above threshold" if high else "LOWER RISK — below threshold"
     css_cls = "high" if high else "low"
     warn = "" if _WEIGHTS_OK else (
         "<div class='warn'>⚠ No fine-tuned weights available — this output is a "
         "PLACEHOLDER (random head). Set WEIGHTS_PATH / WEIGHTS_URL for real "
         "predictions.</div>"
     )
-    interp = ("Higher probability suggests the eye may be less responsive to "
-              "anti-VEGF therapy; such cases may warrant closer follow-up or "
-              "earlier consideration of escalation. "
+    # No management advice: the endpoint is a retrospective proxy (progression to PDR during
+    # an anti-VEGF course), the score is not a calibrated probability, and the model has not
+    # been validated outside its development population.
+    interp = ("In the development cohort, scores in this range were more common in eyes "
+              "that progressed to proliferative DR during an anti-VEGF course. "
               if high else
-              "Lower probability suggests the eye is more likely to respond to "
-              "anti-VEGF therapy. ")
+              "In the development cohort, scores in this range were more common in eyes "
+              "that remained non-proliferative during an anti-VEGF course. ")
+    interp += ("Research output only: not a treatment recommendation, not a calibrated "
+               "probability, and not validated outside the development population.")
     risk_html = f"""
     <div class='risk-card {css_cls}'>
       <div class='risk-row'>
@@ -212,7 +216,7 @@ def analyze(image):
         <span class='risk-label'>{label}</span>
       </div>
       <div class='risk-value'>{prob:.3f}</div>
-      <div class='risk-sub'>probability of anti-VEGF intolerance</div>
+      <div class='risk-sub'>model risk score (0&ndash;1), not a calibrated probability</div>
       <div class='bar'><div class='bar-fill' style='width:{pct:.1f}%'></div>
         <div class='bar-thresh' style='left:{THRESH*100:.0f}%'></div></div>
       <div class='risk-meta'>decision threshold {THRESH:.2f} &nbsp;·&nbsp; running on {_DEVICE_NOTE}</div>
@@ -256,8 +260,9 @@ def analyze(image):
                "<div class='bm-foot'>Interpretation is relative to study "
                "group averages (tolerant vs intolerant); higher vascular "
                "density, skeleton length, and fractal dimension reflect greater "
-               "neovascularization burden. Population-level context, not a "
-               "diagnosis.</div>")
+               "neovascularization burden. These measures depend strongly on the "
+               "camera and are comparable only between images from the same "
+               "device. Population-level context, not a diagnosis.</div>")
 
     return risk_html, cam_img, bm_html
 
@@ -539,7 +544,8 @@ with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as dem
                     )
 
     gr.HTML(
-        "<div id='foot'><b>For research use only.</b><br>"
+        "<div id='foot'><b>For research use only.</b> Not a medical device; not for "
+        "clinical decisions; not validated outside the development population.<br>"
         "Model: DINOv2 ViT-L/14, fine-tuned in-house · weights under Apache-2.0. "
         "No patient data are bundled.<br>"
         "<a href='https://github.com/23008613g/CM-Oculomics' "

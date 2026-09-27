@@ -8,28 +8,28 @@
 
 Code, an interactive demo, and reproducibility resources for the paper:
 
-> **Cohort dependence escapes unsupervised performance estimation in a fundus-based anti-VEGF risk model**
+> **Cohort dependence escapes unsupervised performance estimation in a fundus model of post-treatment progression to proliferative diabetic retinopathy**
 > Cheng Zhang, Shuyan Zhang, Guoming Chen, Xiaoyu Xu, Guoyi Tang, Ruogu Xiong,
 > Yunqing Xun, Tung Leong Fong, Yue Chen, Qinguo Huang, Zhongxiu Zhang, Ning Wang,
 > Yinjian Zhang, Yibin Feng
 > *(manuscript submitted for publication; DOI to follow)*
 
-This repository provides the inference, explainability, and imaging-biomarker code, plus an interactive web demo, for the main results of the paper. **No patient data are included** (see *Data & Privacy* below).
+This repository provides the inference, explainability, and imaging-biomarker code, an interactive web demo, and (in [`analysis/`](analysis/)) the scripts behind every number and figure in the paper together with the model outputs on the seven public cohorts. **No patient data are included** (see *Data & Privacy* below).
 
 ---
 
 ## 1. Overview
 
-We predict **anti-VEGF intolerance** — operationalized as progression to proliferative DR despite an adequate anti-VEGF course (ranibizumab, six consecutive monthly injections + 12-month follow-up) — from a single **low-cost color fundus photograph (CFP)**, using a **generalist vision foundation model, DINOv2 (ViT-L/14)**, fine-tuned for binary classification. The framework adds:
+We predict **progression to proliferative DR during an anti-VEGF course** (called *anti-VEGF intolerance* in the paper; ranibizumab, six consecutive monthly injections + 12-month follow-up) from a single **pretreatment color fundus photograph (CFP)**, using a **generalist vision foundation model, DINOv2 (ViT-L/14)**, fine-tuned for binary classification. The framework adds:
 
-- **Interpretable imaging biomarkers** of intolerance — retinal vascular density, vascular-skeleton length, and vascular fractal dimension (box-counting).
+- **Handcrafted vascular measures** — vascular density, vascular-skeleton length, and fractal dimension (box-counting). They depend strongly on the camera and are comparable only within a device.
 - **Explainability** via Grad-CAM adapted to the vision transformer.
 - **Trustworthy-AI** evaluation (uncertainty, calibration, selective prediction) and **patient-level** metrics with bootstrap confidence intervals.
-- An **objective digital characterization of Traditional Chinese Medicine (TCM) syndromes** referenced against fundus imaging — extending the oculomics paradigm to Chinese medicine.
+- A secondary analysis of **Traditional Chinese Medicine (TCM) syndromes** (Supplementary Note S1); syndrome did not add predictive value.
 
-**Main results (five-fold cross-validation):** patient-level AUC **0.901** (95% CI 0.850–0.939); image-level pooled out-of-fold AUC **0.938** (95% CI 0.903–0.967); external validation on the public DDR dataset (zero fine-tuning) AUC **0.921**.
+**Main results.** Five-fold cross-validation: patient-level AUC **0.914** (95% CI 0.870–0.951), image-level pooled out-of-fold AUC **0.952** (0.921–0.976); these are optimistically selected because early stopping used the evaluated fold. Held-out test split (140 images, 11 intolerant): five-seed ensemble image-level AUC **0.930** (0.877–0.973); at the cross-validation threshold of 0.62 its sensitivity was only 0.55, so any user must set a threshold on local data. Seven public cohorts, zero fine-tuning (3,016 images, proliferative-versus-non-proliferative proxy): AUC **0.698–0.970**, varying more between cohorts than between backbones; the released model reaches **0.934** on DDR. Label-free signals and four published performance estimators did not anticipate which cohorts would transfer well.
 
-**Backbone choice.** In a like-for-like, resolution-matched comparison, DINOv2 was statistically indistinguishable from the retinal-specialist foundation model **RETFound** on internal data (DeLong p = 0.68), generalized **significantly better** on external data (0.921 vs 0.858, p < 0.001), matched it under label scarcity, and — being **Apache-2.0** licensed — permits unrestricted release of weights and this public demo. DINOv2 is therefore the primary encoder; RETFound is retained as a comparator in the paper.
+**Backbone choice.** At matched resolution, DINOv2 and the retinal-specialist foundation model **RETFound** were indistinguishable internally (DeLong p = 0.16–0.91 over three matched runs). Across the seven public cohorts DINOv2 was better on DDR and EyePACS and indistinguishable elsewhere, and it was far more reproducible across training seeds; being **Apache-2.0** licensed, it also permits releasing the weights and this demo. RETFound is retained as a comparator in the paper.
 
 ---
 
@@ -44,6 +44,7 @@ We predict **anti-VEGF intolerance** — operationalized as progression to proli
 ├── LICENSE                      # Apache-2.0
 ├── .gitignore                  # blocks all patient data / identity maps / weights
 ├── app.py                      # Gradio demo (Hugging Face Space ready) — DINOv2
+├── analysis/                   # scripts behind every number/figure + public-cohort outputs (see analysis/README.md)
 ├── configs/
 │   └── default.yaml            # inference config
 ├── src/
@@ -112,9 +113,9 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ### Interactive demo (`app.py`)
 
-`app.py` is a [Gradio](https://gradio.app) app that takes one color fundus photograph and returns (1) an **anti-VEGF intolerance risk score**, (2) a **Grad-CAM** heatmap, and (3) three **vascular biomarkers**. A live public instance is hosted on Hugging Face Spaces — **https://huggingface.co/spaces/fc28/CM-Oculomics** — and it also runs locally with `python app.py` (CPU is sufficient; to self-host see `README_HFSpace.md`).
+`app.py` is a [Gradio](https://gradio.app) app that takes one color fundus photograph and returns (1) a **model risk score** (not a calibrated probability) relative to the study threshold, (2) a **Grad-CAM** heatmap, and (3) three **vascular biomarkers**. It gives no treatment advice. A live public instance is hosted on Hugging Face Spaces — **https://huggingface.co/spaces/fc28/CM-Oculomics** — and it also runs locally with `python app.py` (CPU is sufficient; to self-host see `README_HFSpace.md`).
 
-**Research prototype — not a medical device. Not for clinical use.** No patient data are bundled.
+**Research prototype — not a medical device. Not for clinical use. Not validated outside the development population.** No patient data are bundled.
 
 ---
 
@@ -130,7 +131,7 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 - **No patient data, images, or identity-mapping files are included in this repository**, by design (enforced via `.gitignore`).
 - The in-house cohort cannot be shared publicly due to patient-privacy and ethics constraints; de-identified data may be available from the corresponding author on reasonable request, subject to institutional and ethical approval.
-- **External dataset (DDR):** used for zero-fine-tuning external validation; publicly available at https://github.com/nkicsl/DDR-dataset (Li T, et al. *Inf Sci* 2019).
+- **External datasets:** seven public cohorts used without fine-tuning — DDR, JSIEC, DeepDRiD, APTOS 2019, IDRiD, Messidor-2 (adjudicated grades) and EyePACS — each obtained from its distributor under its own terms (references in the paper). The exact image lists of the class-balanced subsets are in `analysis/public_outputs/external_predictions/`.
 
 ---
 
@@ -138,7 +139,7 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ```bibtex
 @article{CM_Oculomics,
-  title   = {Cohort dependence escapes unsupervised performance estimation in a fundus-based anti-VEGF risk model},
+  title   = {Cohort dependence escapes unsupervised performance estimation in a fundus model of post-treatment progression to proliferative diabetic retinopathy},
   author  = {Zhang, Cheng and Zhang, Shuyan and Chen, Guoming and Xu, Xiaoyu and Tang, Guoyi and Xiong, Ruogu and Xun, Yunqing and Fong, Tung Leong and Chen, Yue and Huang, Qinguo and Zhang, Zhongxiu and Wang, Ning and Zhang, Yinjian and Feng, Yibin},
   year    = {2026},
   note    = {Manuscript submitted for publication}
@@ -156,4 +157,4 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ## 9. Acknowledgments
 
-This work builds on **DINOv2** (Oquab et al., 2024; Apache-2.0) as the primary encoder, uses **RETFound** (Zhou et al., Nature 2023) as a comparator, and the public **DDR** dataset for external validation.
+This work builds on **DINOv2** (Oquab et al., 2024; Apache-2.0) as the primary encoder, uses **RETFound** (Zhou et al., Nature 2023) as a comparator, and the public **DDR, JSIEC, DeepDRiD, APTOS 2019, IDRiD, Messidor-2 and EyePACS** datasets for external evaluation.

@@ -1,0 +1,39 @@
+{
+  "note": "Grad-CAM computed as in the released application: last transformer block, 16x16 token grid, explained class = the predicted class, per-image min-max stretch before display.",
+  "cohorts": {
+    "development": {
+      "n": 12,
+      "mean_coverage": 0.796,
+      "mean_outside": 0.121
+    },
+    "DDR": {
+      "n": 12,
+      "mean_coverage": 0.52,
+      "mean_outside": 0.392
+    }
+  },
+  "correlation": {
+    "spearman_rho": -0.84,
+    "p": 2.8021600794202184e-07,
+    "n": 24
+  },
+  "recrop": {
+    "image": "example_fundus_uncropped_original.jpg",
+    "before": {
+      "coverage": 0.6018614477040817,
+      "outside": 0.452647864818573,
+      "prob": 0.0065994868054986
+    },
+    "after": {
+      "coverage": 0.7951411033163265,
+      "outside": 0.025971053168177605,
+      "prob": 0.007017796393483877
+    }
+  },
+  "figure4_eyes": {
+    "n": 16,
+    "mean_coverage": 0.867,
+    "mean_outside": 0.06,
+    "max_outside": 0.185
+  }
+}

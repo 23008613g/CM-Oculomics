@@ -1,0 +1,139 @@
+{
+  "calibration": {
+    "n": 805,
+    "prevalence": 0.0882,
+    "mean_predicted": 0.2185,
+    "observed_over_expected": 0.404,
+    "intercept_calibration_in_the_large": -2.388,
+    "intercept_ci95": [
+      -2.746,
+      -2.029
+    ],
+    "slope": 0.897,
+    "slope_ci95": [
+      0.715,
+      1.079
+    ]
+  },
+  "decision_curve": {
+    "net_benefit_at_0.618": -0.0451,
+    "net_benefit_at_0.5": -0.0199,
+    "first_threshold_with_negative_net_benefit": 0.35,
+    "net_benefit_treat_none": 0.0,
+    "npv_treat_all_tolerant": 0.9118
+  },
+  "clustered_bootstrap": {
+    "image_auc": 0.9517,
+    "ci95_patient_clustered": [
+      0.92,
+      0.976
+    ],
+    "replicates": 2000
+  },
+  "selective_prediction": {
+    "set": "held-out test split, deployed model, MC-dropout 30 passes, threshold 0.5",
+    "n": 140,
+    "n_intolerant": 11,
+    "rows": [
+      {
+        "coverage": 0.1,
+        "kept": 14,
+        "intolerant_kept": 0,
+        "balanced_accuracy": 1.0
+      },
+      {
+        "coverage": 0.2,
+        "kept": 28,
+        "intolerant_kept": 0,
+        "balanced_accuracy": 1.0
+      },
+      {
+        "coverage": 0.3,
+        "kept": 42,
+        "intolerant_kept": 1,
+        "balanced_accuracy": 1.0
+      },
+      {
+        "coverage": 0.4,
+        "kept": 56,
+        "intolerant_kept": 1,
+        "balanced_accuracy": 1.0
+      },
+      {
+        "coverage": 0.5,
+        "kept": 70,
+        "intolerant_kept": 3,
+        "balanced_accuracy": 1.0
+      },
+      {
+        "coverage": 0.6,
+        "kept": 84,
+        "intolerant_kept": 3,
+        "balanced_accuracy": 0.994
+      },
+      {
+        "coverage": 0.7,
+        "kept": 98,
+        "intolerant_kept": 4,
+        "balanced_accuracy": 0.984
+      },
+      {
+        "coverage": 0.8,
+        "kept": 112,
+        "intolerant_kept": 7,
+        "balanced_accuracy": 0.829
+      },
+      {
+        "coverage": 0.9,
+        "kept": 126,
+        "intolerant_kept": 9,
+        "balanced_accuracy": 0.786
+      },
+      {
+        "coverage": 1.0,
+        "kept": 140,
+        "intolerant_kept": 11,
+        "balanced_accuracy": 0.745
+      }
+    ]
+  },
+  "biomarker_spearman": {
+    "n_images": 805,
+    "skeleton_vs_density": 0.925,
+    "with_model_score": {
+      "vessel_skeleton": 0.37,
+      "vessel_density": 0.368,
+      "fractal_dim": 0.214,
+      "dark_lesion_area": 0.109
+    }
+  },
+  "multivariable": {
+    "n": 805,
+    "n_predictors": 12,
+    "events": 71,
+    "events_per_predictor": 5.9
+  },
+  "seed_sd_ratio_retfound_over_dinov2": {
+    "ddr": 21.6,
+    "jsiec": 11.8,
+    "deepdrid": 6.5,
+    "aptos": 5.1,
+    "idrid": 3.8,
+    "messidor2": 2.1,
+    "eyepacs": 3.2
+  },
+  "by_population": {
+    "dino": {
+      "china_mean": 0.923,
+      "other_mean": 0.782,
+      "gap": 0.14,
+      "separated": true
+    },
+    "ret": {
+      "china_mean": 0.887,
+      "other_mean": 0.755,
+      "gap": 0.133,
+      "separated": false
+    }
+  }
+}

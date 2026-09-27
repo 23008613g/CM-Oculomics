@@ -1,0 +1,40 @@
+# TCM-Retina 引擎①基线配置:眼底图 → 中医证型(4分类)
+# ============================================================
+task: tcm_syndrome            # tcm_syndrome | dr_grade
+seed: 42
+
+data:
+  root: data_anon
+  splits_csv: data_anon/splits.csv
+  image_dir: data_anon/images
+  label_col: tcm_syndrome     # 主任务标签列
+  image_size: 256
+  num_workers: 4
+
+model:
+  backbone: swinv2_tiny_window8_256   # timm 名称;基线用 tiny 快速验证
+  pretrained: true                    # 先用 ImageNet 预训练(RETFound 后续接入)
+  drop_rate: 0.1
+
+train:
+  fold: 0                  # 用哪一折做验证(0..4),其余折训练
+  epochs: 30
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.05
+  optimizer: adamw
+  scheduler: cosine
+  warmup_epochs: 3
+  class_weight: balanced   # 处理证型轻度不平衡
+  amp: true                # 混合精度(省3090显存)
+  early_stop_patience: 8
+
+aug:
+  hflip: true
+  rotate: 15
+  color_jitter: 0.1
+  random_resized_crop: true
+
+output:
+  dir: results/baseline_syndrome
+  save_best: true

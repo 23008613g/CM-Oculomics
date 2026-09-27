@@ -1,0 +1,25 @@
+# 多模态消融:眼底图(+临床指标)(+中医证型) → anti-VEGF 耐受性
+seed: 42
+data:
+  splits_csv: data_anon/splits.csv
+  patients_csv: data_anon/patients_anon.csv
+  image_dir: data_anon/images
+  image_size: 224
+  num_workers: 4
+model:
+  retfound: true
+  drop_rate: 0.2
+train:
+  epochs: 35
+  batch_size: 16
+  lr: 0.00005
+  weight_decay: 0.05
+  monitor: balanced_acc
+  early_stop_patience: 10
+aug:
+  hflip: true
+  rotate: 15
+  color_jitter: 0.1
+  random_resized_crop: true
+output:
+  dir: results/multimodal_antivegf

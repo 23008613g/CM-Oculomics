@@ -1,0 +1,16 @@
+{
+  "dinov2_l": {
+    "ddr_auc": 0.9336,
+    "ddr_ap": 0.9246,
+    "n": 550,
+    "n_pdr": 275,
+    "source": "dino_deploy.pth (30_dino_artifacts.py)"
+  },
+  "retfound": {
+    "ddr_auc": 0.7807,
+    "ddr_ap": 0.8079,
+    "n": 550,
+    "n_pdr": 275,
+    "source": "retfound_antivegf/best.pth (run.py train, masked images)"
+  }
+}

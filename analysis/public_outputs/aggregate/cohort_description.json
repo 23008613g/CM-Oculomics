@@ -1,0 +1,101 @@
+{
+  "imaged_patients": 489,
+  "images": 988,
+  "clinical_records": 486,
+  "both": 465,
+  "imaged_without_record": 24,
+  "records_without_images": 21,
+  "images_without_record": 43,
+  "images_without_record_pdr": 13,
+  "analysed": {
+    "images": 945,
+    "patients": 465,
+    "eyes": 831,
+    "images_per_eye": {
+      "1": 728,
+      "2": 94,
+      "3": 7,
+      "4": 2
+    },
+    "intolerant_images": 82,
+    "intolerant_eyes": 78,
+    "intolerant_patients": 64,
+    "patients_with_both_eyes": 366
+  },
+  "demographics_analysed": {
+    "n": 465,
+    "male": 309,
+    "female": 156,
+    "age_mean_sd": [
+      64.6,
+      11.1
+    ],
+    "age_range": [
+      36,
+      92
+    ],
+    "duration_mean_sd": [
+      7.0,
+      3.7
+    ],
+    "hba1c_mean_sd": [
+      7.7,
+      1.1
+    ],
+    "bmi_mean_sd": [
+      23.6,
+      2.2
+    ],
+    "hypertension_n": 307,
+    "smoking_n": 283,
+    "syndrome": {
+      "phlegm-stasis": 177,
+      "yin-deficiency with stasis": 122,
+      "spleen-kidney deficiency": 96,
+      "qi-yin deficiency": 70
+    }
+  },
+  "device_by_split": {
+    "Canon digital back | test": {
+      "images": 7,
+      "pdr": 0
+    },
+    "Canon digital back | train_val": {
+      "images": 88,
+      "pdr": 0
+    },
+    "Topcon + frame grabber | test": {
+      "images": 45,
+      "pdr": 1
+    },
+    "Topcon + frame grabber | train_val": {
+      "images": 201,
+      "pdr": 5
+    },
+    "VISUCAM 200 | test": {
+      "images": 88,
+      "pdr": 10
+    },
+    "VISUCAM 200 | train_val": {
+      "images": 516,
+      "pdr": 66
+    }
+  },
+  "device_totals": {
+    "Canon digital back": {
+      "images": 95,
+      "pdr": 0,
+      "pdr_rate": 0.0
+    },
+    "Topcon + frame grabber": {
+      "images": 246,
+      "pdr": 6,
+      "pdr_rate": 0.024
+    },
+    "VISUCAM 200": {
+      "images": 604,
+      "pdr": 76,
+      "pdr_rate": 0.126
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "n_images": 140,
+  "n_pdr": 11,
+  "n_patients": 69,
+  "n_patients_pdr": 8,
+  "models": {
+    "dinov2_l": {
+      "per_seed_auc": [
+        0.8964,
+        0.9035,
+        0.9401,
+        0.8992,
+        0.914
+      ],
+      "per_seed_mean": 0.9106,
+      "per_seed_sd": 0.0178,
+      "ensemble_auc": 0.9302,
+      "ensemble_auc_ci95": [
+        0.877,
+        0.973
+      ],
+      "ensemble_patient_auc": 0.9262,
+      "ensemble_patient_auc_ci95": [
+        0.848,
+        0.984
+      ],
+      "at_0.618": {
+        "sensitivity": 0.545,
+        "specificity": 0.938,
+        "tp": 6,
+        "fp": 8
+      },
+      "at_0.500": {
+        "sensitivity": 0.636,
+        "specificity": 0.922,
+        "tp": 7,
+        "fp": 10
+      }
+    },
+    "retfound": {
+      "per_seed_auc": [
+        0.9063,
+        0.926,
+        0.9084,
+        0.8654,
+        0.9133
+      ],
+      "per_seed_mean": 0.9039,
+      "per_seed_sd": 0.0228,
+      "ensemble_auc": 0.9288,
+      "ensemble_auc_ci95": [
+        0.858,
+        0.981
+      ],
+      "ensemble_patient_auc": 0.9283,
+      "ensemble_patient_auc_ci95": [
+        0.855,
+        0.982
+      ],
+      "at_0.618": {
+        "sensitivity": 0.727,
+        "specificity": 0.891,
+        "tp": 8,
+        "fp": 14
+      },
+      "at_0.500": {
+        "sensitivity": 0.909,
+        "specificity": 0.884,
+        "tp": 10,
+        "fp": 15
+      }
+    }
+  }
+}
