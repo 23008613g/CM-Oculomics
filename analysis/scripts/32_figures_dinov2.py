@@ -262,6 +262,11 @@ def fig7():
     ax.plot([0, 1], [0, 1], "k--", label="Perfect")
     ax.plot(xb, yb, "o-", color=C["accent"], label=f"Before (ECE={eb:.3f})")
     ax.plot(xa, ya, "s-", color=C["ok"], label=f"After T={T:.2f} (ECE={ea:.3f})")
+    # 2026-09-27: prior correction for the class-weighted training (scripts/73), which fixes the
+    # calibration-in-the-large that temperature scaling cannot
+    _rc = pd.read_csv(os.path.join(DE, "oof_recalibrated.csv"))
+    xr, yr, er = ece_points(_rc.prob_prior.values, _rc.y.values)
+    ax.plot(xr, yr, "D-", color=C["main"], label=f"Prior-corrected (ECE={er:.3f})")
     ax.set_xlabel("Predicted probability"); ax.set_ylabel("Observed frequency"); ax.set_title("Calibration (pooled OOF)"); ax.legend(loc="upper left")
     fig.savefig(os.path.join(OUTF, "Figure7_trustworthy.png"), dpi=300, bbox_inches="tight"); plt.close()
     print("Fig7 done")
@@ -297,7 +302,12 @@ def fig8():
     for pt in ts:
         tp = ((p >= pt) & (y == 1)).sum(); fp = ((p >= pt) & (y == 0)).sum(); nbm.append(tp / n - fp / n * (pt / (1 - pt)))
         nba.append((y == 1).sum() / n - (y == 0).sum() / n * (pt / (1 - pt)))
-    ax.plot(ts, nbm, color=C["ok"], lw=2, label="Model"); ax.plot(ts, nba, color=C["grey"], lw=1.5, label="Treat all")
+    # 2026-09-27: the same decision curve on prior-corrected probabilities (scripts/73)
+    _rc = pd.read_csv(os.path.join(DE, "oof_recalibrated.csv")); yc, pc = _rc.y.values, _rc.prob_prior.values
+    nbc = [((pc >= pt) & (yc == 1)).sum() / n - ((pc >= pt) & (yc == 0)).sum() / n * (pt / (1 - pt)) for pt in ts]
+    ax.plot(ts, nbm, color=C["ok"], lw=2, ls="--", label="Model, uncalibrated")
+    ax.plot(ts, nbc, color=C["main"], lw=2.2, label="Model, prior-corrected")
+    ax.plot(ts, nba, color=C["grey"], lw=1.5, label="Treat all")
     ax.axhline(0, color="k", lw=1, label="Treat none"); ax.set_ylim(-0.05, y.mean() + 0.05)
     ax.set_xlabel("Threshold probability"); ax.set_ylabel("Net benefit"); ax.set_title("Decision curve analysis"); ax.legend()
     # c risk stratification

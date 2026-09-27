@@ -1,0 +1,143 @@
+{
+  "collapsed_retfound_seed": 0,
+  "pooled_delta_auc_all_seeds": {
+    "per_cohort": [
+      0.0393,
+      0.0329,
+      0.0341,
+      0.025,
+      -0.0021,
+      -0.023,
+      0.1109
+    ],
+    "fixed": 0.0544,
+    "random": 0.0385,
+    "ci95": [
+      0.0042,
+      0.0728
+    ],
+    "prediction_interval": [
+      -0.073,
+      0.1501
+    ],
+    "tau2": 0.00158,
+    "I2": 82.4,
+    "k": 7
+  },
+  "pooled_delta_auc_without_collapsed_run": {
+    "per_cohort": [
+      0.0263,
+      0.0296,
+      0.0096,
+      0.0148,
+      -0.0033,
+      -0.0229,
+      0.1009
+    ],
+    "fixed": 0.0426,
+    "random": 0.0287,
+    "ci95": [
+      -0.0053,
+      0.0628
+    ],
+    "prediction_interval": [
+      -0.0823,
+      0.1398
+    ],
+    "tau2": 0.00157,
+    "I2": 83.6,
+    "k": 7
+  },
+  "variance_components_all_seeds": {
+    "cohort": {
+      "share": 0.407,
+      "ci95": [
+        0.038,
+        0.621
+      ],
+      "variance": 0.007628
+    },
+    "backbone": {
+      "share": 0.246,
+      "ci95": [
+        0.152,
+        0.415
+      ],
+      "variance": 0.004617
+    },
+    "cohort_x_backbone": {
+      "share": 0.0,
+      "ci95": [
+        0.0,
+        0.024
+      ],
+      "variance": 0.0
+    },
+    "seed_residual": {
+      "share": 0.347,
+      "ci95": [
+        0.186,
+        0.608
+      ],
+      "variance": 0.006494
+    }
+  },
+  "variance_components_without_collapsed_seed_index": {
+    "cohort": {
+      "share": 0.635,
+      "ci95": [
+        0.147,
+        0.842
+      ],
+      "variance": 0.008542
+    },
+    "backbone": {
+      "share": 0.123,
+      "ci95": [
+        0.055,
+        0.29
+      ],
+      "variance": 0.00166
+    },
+    "cohort_x_backbone": {
+      "share": 0.0,
+      "ci95": [
+        0.0,
+        0.096
+      ],
+      "variance": 0.0
+    },
+    "seed_residual": {
+      "share": 0.241,
+      "ci95": [
+        0.089,
+        0.637
+      ],
+      "variance": 0.00324
+    }
+  },
+  "retfound_seed_sd_without_collapsed": {
+    "ddr": 0.045,
+    "jsiec": 0.082,
+    "deepdrid": 0.036,
+    "aptos": 0.04,
+    "idrid": 0.021,
+    "messidor2": 0.152,
+    "eyepacs": 0.051
+  },
+  "dinov2_seed_sd": {
+    "ddr": 0.005,
+    "jsiec": 0.009,
+    "deepdrid": 0.025,
+    "aptos": 0.014,
+    "idrid": 0.019,
+    "messidor2": 0.069,
+    "eyepacs": 0.021
+  },
+  "logit_scale_components_all_seeds": {
+    "cohort": 0.544,
+    "backbone": 0.199,
+    "cohort_x_backbone": 0.016,
+    "seed_residual": 0.242
+  }
+}

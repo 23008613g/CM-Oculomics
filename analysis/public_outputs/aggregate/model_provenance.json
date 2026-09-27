@@ -17,7 +17,7 @@
       "training": "5 fold models, each trained on the other 4 folds of the cross-validation set (805 images, 71 intolerant)",
       "selection": "each fold model stops early on the fold it then predicts (balanced accuracy at 0.5, patience 10, at most 30 epochs); learning rate chosen on fold 0 (1e-5)",
       "runs": "1",
-      "used_for": "Sections 2.1, 2.1b, 2.5-2.7; Figs 2, 3a-b, 5a, 5c-d, 6b, 7b, 8, 9, 10b-d",
+      "used_for": "Sections 2.1, 2.7 and Supplementary Note S4; Figs 2, 3a-b; Figures S8a, S8c-d, S9b, S10b, S11, S12, S13b-d",
       "saved": "out-of-fold predictions only"
     },
     {
@@ -26,7 +26,7 @@
       "training": "as run 1",
       "selection": "as run 1",
       "runs": "2 (different random seeds)",
-      "used_for": "Section 2.2 (mean and SD over runs 1-3)",
+      "used_for": "Section 2.3 (mean and SD over runs 1-3)",
       "saved": "out-of-fold predictions only"
     },
     {
@@ -35,7 +35,7 @@
       "training": "as DINOv2 run 1",
       "selection": "each fold model stops early on the fold it then predicts (balanced accuracy at 0.5, patience 10, at most 30 epochs); learning rate chosen on fold 0 (own sweep)",
       "runs": "3",
-      "used_for": "Section 2.2; Fig 3a; calibration comparison in Section 2.6",
+      "used_for": "Section 2.3; Fig 3a; calibration comparison in Supplementary Note S4",
       "saved": "out-of-fold predictions only"
     },
     {
@@ -44,7 +44,7 @@
       "training": "as DINOv2 run 1",
       "selection": "each fold model stops early on the fold it then predicts (balanced accuracy at 0.5, patience 10, at most 30 epochs); learning rate chosen on fold 0 (own sweep)",
       "runs": "1 each",
-      "used_for": "Section 2.2; Fig 3a",
+      "used_for": "Section 2.3; Fig 3a",
       "saved": "out-of-fold predictions only"
     },
     {
@@ -53,7 +53,7 @@
       "training": "as run 1, with training rows subsampled within each fold to 10, 25, 50 and 100% (stratified by outcome); the validation fold is never subsampled",
       "selection": "each fold model stops early on the fold it then predicts (balanced accuracy at 0.5, patience 10, at most 30 epochs); learning rate chosen on fold 0",
       "runs": "1 per fraction",
-      "used_for": "Section 2.7; Fig 10a",
+      "used_for": "Supplementary Note S4; Figure S13a",
       "saved": "out-of-fold predictions only"
     },
     {
@@ -62,7 +62,7 @@
       "training": "cross-validation folds 1-4 (639 images, 57 intolerant)",
       "selection": "early stopping on fold 0 (166 images, 14 intolerant)",
       "runs": "5 per backbone (seeds 0-4)",
-      "used_for": "held-out test (Section 2.1c); seven external cohorts (Sections 2.3-2.4; Figs 3c, 11, 12, S4-S6; Data S1); in-distribution anchor of the estimators",
+      "used_for": "held-out test (Section 2.2); seven external cohorts (Sections 2.4-2.6; Figs 3c, 4, 5, 6, S4-S6; Data S1); in-distribution anchor of the estimators",
       "saved": "checkpoints kept, not released"
     },
     {
@@ -71,7 +71,7 @@
       "training": "cross-validation folds 1-4 (639 images, 57 intolerant)",
       "selection": "early stopping on fold 0 (166 images, 14 intolerant)",
       "runs": "1",
-      "used_for": "single-model DDR result (Section 2.3, Fig 5b); selective prediction on the held-out split (Fig 7a); DINOv2 Grad-CAM (Fig 4a); t-SNE (Fig 6a); web application (Fig S7)",
+      "used_for": "single-model DDR result (Section 2.4, Figure S8b); selective prediction on the held-out split (Figure S10a); DINOv2 Grad-CAM (Fig 7a); t-SNE (Figure S9a); web application (Figure S7)",
       "saved": "released (Hugging Face, Apache-2.0); sha256 bc899592b9d9262e4e6c566105bbb1fa7658b195fa728e031ac6c2b2109e0d95"
     },
     {
@@ -80,7 +80,7 @@
       "training": "cross-validation folds 1-4 (639 images, 57 intolerant)",
       "selection": "early stopping on fold 0 (166 images, 14 intolerant)",
       "runs": "1",
-      "used_for": "RETFound Grad-CAM (Fig 4a)",
+      "used_for": "RETFound Grad-CAM (Fig 7a)",
       "saved": "kept, not released (CC BY-NC weights)"
     },
     {

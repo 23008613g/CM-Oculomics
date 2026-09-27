@@ -21,23 +21,23 @@ analysis/
     └── aggregate/              summary JSON/CSV files behind the text and figures
 ```
 
-## What reproduces what
+## What reproduces what (figure and section numbers of the submitted paper)
 
 | Paper element | Script(s) | Needs development data? |
 |---|---|---|
 | Training protocol, cross-validation, label efficiency | `27_dino_experiment.py` | yes |
-| External seed models and external scoring (Sections 2.3–2.4) | `38_external2_benchmark.py` | yes (training); scoring outputs are in `public_outputs/` |
-| Fig. 11, ΔAUC pooling, seed SDs | `40_external_meta.py` | **no**: copy `public_outputs/external_predictions/*.npz` to `results/external2/` and `aggregate/heldout_test.json` to `results/` |
-| Label-free signals (Fig. S4, Table S2), sub-cohort analysis (Fig. S5) | `42`, `44`, `45`, `47` | yes (development embeddings) |
-| Published estimators (Fig. 12) | `46_aline_atc_doc.py` | yes (held-out anchor) |
-| Labels needed for local validation (Fig. S6) | `48_labels_needed.py` | **no**: same predictions, in `results/external2/` |
-| Per-model table (Data S1) | `64_per_seed_table.py` | anchor rows only |
-| Headline internal metrics, Section 2.6 numbers | `56`, `57`, `66` | yes |
-| Held-out test split, acquisition device (Section 2.1c) | `61`, `60`, `62` | yes |
-| Vascular measures by camera (Section 2.5) | `67_biomarker_by_device.py` | yes |
-| Cohort description (Section 5.2), model provenance (Table S3) | `68`, `69` | yes |
+| Case study and held-out split (Sections 2.1-2.2) | `56`, `61`, `60`, `62` | yes |
+| External seed models and external scoring (Sections 2.4-2.6) | `38_external2_benchmark.py` | yes (training); scoring outputs are in `public_outputs/` |
+| Fig. 4, fixed- and random-effects pooling, variance components | `40_external_meta.py`, `72_random_effects.py` | **no**: copy `public_outputs/external_predictions/*.npz` to `results/external2/` and `aggregate/heldout_test.json` to `results/` |
+| Published estimators and the no-shift baseline (Fig. 5) | `46_aline_atc_doc.py`, `75_estimator_baselines.py` | yes (held-out anchor); `75` runs from `aggregate/aline_atc_doc.json` |
+| Label-free signals (Figure S4, Table S2), sub-cohort analysis (Figure S5) | `42`, `44`, `45`, `47` | yes (development embeddings) |
+| Cost of local validation (Fig. 6, Figure S6) | `74_local_validation_cost.py` | **no**: same predictions, in `results/external2/` |
+| Per-model table and model provenance (Data S1, Table S3) | `64_per_seed_table.py`, `69_model_provenance.py` | anchor rows and counts only |
+| Recalibration and decision curves (Supplementary Note S4, Figures S10-S11) | `73_recalibration.py`, `32_figures_dinov2.py` | yes |
+| Headline internal metrics, supporting numbers | `57`, `66` | yes |
+| Vascular measures by camera; cohort description | `67_biomarker_by_device.py`, `68_cohort_description.py` | yes |
 | Overlay masking | `49_mask_overlays.py` | yes |
-| Figures 1–10 | `63` (Fig. 1), `32_figures_dinov2.py` (Figs 2–10), `70` (Fig. 4a eye selection) | yes |
+| Figures 1-3, 7 and S8-S13 | `63` (Fig. 1), `32_figures_dinov2.py`, `70` (Fig. 7a eye selection) | yes |
 | Figure S1, Figure S7 | `71`, `58` (+ `figS7_capture/make_app_figS7.py`) | S7: example images |
 
 ## Recomputing the external AUCs from the released predictions

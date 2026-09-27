@@ -1,0 +1,41 @@
+{
+  "n_pairs": 70,
+  "methods": {
+    "ALine-D": {
+      "mae": 0.18,
+      "bias": 0.146,
+      "worst": 0.489,
+      "spearman_with_true": -0.28
+    },
+    "ALine-S": {
+      "mae": 0.244,
+      "bias": 0.216,
+      "worst": 0.5,
+      "spearman_with_true": -0.57
+    },
+    "DoC": {
+      "mae": 0.198,
+      "bias": 0.177,
+      "worst": 0.546,
+      "spearman_with_true": -0.15
+    },
+    "ATC": {
+      "mae": 0.214,
+      "bias": 0.188,
+      "worst": 0.5,
+      "spearman_with_true": -0.4
+    },
+    "No-shift": {
+      "mae": 0.18,
+      "bias": 0.161,
+      "worst": 0.393,
+      "spearman_with_true": 0.19
+    },
+    "Mean observed (uses labels)": {
+      "mae": 0.094,
+      "bias": -0.0,
+      "worst": 0.274,
+      "spearman_with_true": null
+    }
+  }
+}
