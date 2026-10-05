@@ -8,7 +8,7 @@
 
 Code, an interactive demo, and reproducibility resources for the paper:
 
-> **Cohort dependence escapes unsupervised performance estimation in a fundus model of post-treatment progression to proliferative diabetic retinopathy**
+> **Cohort dependence escapes unsupervised performance estimation in a deep-learning fundus model of post-treatment progression to proliferative diabetic retinopathy**
 > Cheng Zhang, Shuyan Zhang, Guoming Chen, Xiaoyu Xu, Guoyi Tang, Ruogu Xiong,
 > Yunqing Xun, Tung Leong Fong, Yue Chen, Qinguo Huang, Zhongxiu Zhang, Ning Wang,
 > Yinjian Zhang, Yibin Feng
@@ -139,7 +139,7 @@ Training on your own ethically-approved data uses `src/train.py` with a manifest
 
 ```bibtex
 @article{CM_Oculomics,
-  title   = {Cohort dependence escapes unsupervised performance estimation in a fundus model of post-treatment progression to proliferative diabetic retinopathy},
+  title   = {Cohort dependence escapes unsupervised performance estimation in a deep-learning fundus model of post-treatment progression to proliferative diabetic retinopathy},
   author  = {Zhang, Cheng and Zhang, Shuyan and Chen, Guoming and Xu, Xiaoyu and Tang, Guoyi and Xiong, Ruogu and Xun, Yunqing and Fong, Tung Leong and Chen, Yue and Huang, Qinguo and Zhang, Zhongxiu and Wang, Ning and Zhang, Yinjian and Feng, Yibin},
   year    = {2026},
   note    = {Manuscript submitted for publication}
