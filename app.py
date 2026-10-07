@@ -543,7 +543,11 @@ with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as dem
                         "after analysis.</div>"
                     )
 
-    gr.HTML("<div id='foot'><b>Research use only</b></div>")
+    gr.HTML(
+        "<div id='foot'><b>Research use only</b><br>"
+        "<a href='https://github.com/23008613g/CM-Oculomics' "
+        "target='_blank' rel='noopener noreferrer'>Code</a></div>"
+    )
 
     btn.click(analyze, inputs=inp, outputs=[risk_out, cam_out, bm_out])
     clr.add([inp, risk_out, cam_out, bm_out])
