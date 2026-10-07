@@ -543,14 +543,7 @@ with gr.Blocks(title="CM-Oculomics — Anti-VEGF Intolerance Prediction") as dem
                         "after analysis.</div>"
                     )
 
-    gr.HTML(
-        "<div id='foot'><b>For research use only.</b> Not a medical device; not for "
-        "clinical decisions; not validated outside the development population.<br>"
-        "Model: DINOv2 ViT-L/14, fine-tuned in-house · weights under Apache-2.0. "
-        "No patient data are bundled.<br>"
-        "<a href='https://github.com/23008613g/CM-Oculomics' "
-        "target='_blank' rel='noopener noreferrer'>Code</a></div>"
-    )
+    gr.HTML("<div id='foot'><b>Research use only</b></div>")
 
     btn.click(analyze, inputs=inp, outputs=[risk_out, cam_out, bm_out])
     clr.add([inp, risk_out, cam_out, bm_out])
